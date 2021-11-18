@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="../css/styles.css">
 	</head>
 	<body>
-        <h1>Basic input</h1>
+	
 		<form action="new.php" method="post">
 			Enter your Student ID:<br>
 			<input type="text" name="id">
@@ -18,6 +18,10 @@
 			<input type="text" name="name">
 			<br>
 			<br>
+			
+			Basic Calculations 10 Points
+			1. 98-56+45=<input type="text" name="BC1">
+			2. 376-678+236=<input type="text" name="BC2">
 			
 			<input type="submit" value="Send input!">
 		</form>
