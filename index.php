@@ -163,9 +163,9 @@
 			Division & Multiplication<br>
 			<ol>
 				<li> 8.25 / 1000 = <input type="text" name="esdn7"></li> 
-				<li> 6.26 x 100 = <input type="text" name="esdn7"></li> 
-				<li> 3.87 / 10 = <input type="text" name="esdn7"></li> 
-				<li> 2.29 / 100 = <input type="text" name="esdn7"></li> 
+				<li> 6.26 x 100 = <input type="text" name="esdn8"></li> 
+				<li> 3.87 / 10 = <input type="text" name="esdn9"></li> 
+				<li> 2.29 / 100 = <input type="text" name="esdn10"></li> 
 			</ol>
 			<br><br>
 			
