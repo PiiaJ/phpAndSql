@@ -19,11 +19,17 @@
 			<br>
 			<br>
 			
-			<!-- Joko aikalaskuri tai päättymisajan tulostus näkyviin -->
-			
 			Time limit: 60 minutes
 			<br>
 			<br>
+			
+			<!-- Miten halutaan toteuttaa kokeen käynnistys? Tuleeko nimi ja id omaan tiedostoon ja sitten tehtävät toiseen tiedostoon vai jätetäänkö kaikki 
+			samaan? Jos laitetaan tähän kohtaan oma submit nappi, se voi 1. käynnistää aikalaskurin 2. lähettää nimen ja id:n tietokantaan ja 3. näyttää tehtävät
+			(css-tiedoston?) avulla.
+			<input type="submit" value="Start exam!" name="start" onclick="start()">
+			-->
+			
+			<!-- Joko aikalaskuri tai päättymisajan tulostus näkyviin varsinaiselle koesivulle -->
 			
 			<!-- Esimerkki aikalaskurista (countdown)
 
@@ -61,8 +67,6 @@
 			<label for="file">Your progress:</label>
 			<progress id="file" value="0" max="57"> 0 % </progress>
 			-->
-			
-			<input type="submit" value="Start exam!" name="start" onclick="start()">
 			
 			<h2>Basic Calculations 10 Points</h2><br>
 			<ol>
