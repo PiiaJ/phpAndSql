@@ -55,6 +55,9 @@ $esdn4 = $_POST['esdn4'];
 $esdn5 = $_POST['esdn5'];
 $esdn6 = $_POST['esdn6'];
 $esdn7 = $_POST['esdn7'];
+$esdn8 = $_POST['esdn8'];
+$esdn9 = $_POST['esdn9'];
+$esdn10 = $_POST['esdn10'];
 
 $roman1 = $_POST['roman1'];
 $roman2 = $_POST['roman2'];
@@ -90,8 +93,8 @@ VALUES ($id, $BC1,$BC2,$BC3,$BC4,$BC5,$BC6,$BC7,$BC8,$BC9,$BC10)";
   $sql = "INSERT INTO percentage (ID,per1,per2,per3,per4,per5,per6,per7,per8,per9,per10)
   VALUES ($id, $per1,$per2,$per3,$per4,$per5,$per6,$per7,$per8,$per9,$per10)";
 
-$sql = "INSERT INTO expressions (ID,esdn1,esdn2,esdn3,esdn4,esdn5,esdn6,esdn7)
-VALUES ($id, $esdn1, $esdn2, $esdn3, $esdn4, $esdn5, $esdn6, $esdn7)";
+$sql = "INSERT INTO expressions (ID,esdn1,esdn2,esdn3,esdn4,esdn5,esdn6,esdn7,esdn8,esdn9,esdn10)
+VALUES ($id, $esdn1, $esdn2, $esdn3, $esdn4, $esdn5, $esdn6, $esdn7, $esdn8, $esdn9, $esdn10)";
 
 $sql = "INSERT INTO roman (ID,roman1,roman2,roman3,roman4,roman5,roman6,roman7,roman8,roman9,roman10)
 VALUES ($id, $roman1, $roman2, $roman3, $roman4, $roman5, $roman6, $roman7, $roman8, $roman9, $roman10)";
