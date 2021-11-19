@@ -3,3 +3,11 @@ body {
 	margin-right: auto;
 	padding: 10px;
 }
+h2 {
+	color: blue;
+}
+input[type=text] {
+	margin:5px;
+	border: 1px solid black;
+	border-radius: 5px
+	}
