@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="./styles.css">
 	</head>
 	<body>
+		Math test <? php echo date("F j Y"); ?>
+		Time limit: 60 minutes
 	
 		<form action="new.php" method="post">
 			Enter your Student ID:<br>
@@ -16,10 +18,6 @@
 	  
 			Enter your name:<br>
 			<input type="text" name="name">
-			<br>
-			<br>
-			
-			Time limit: 60 minutes
 			<br>
 			<br>
 			
