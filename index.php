@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Math exam</title>
-        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="./styles.css">
 	</head>
 	<body>
 	
@@ -190,13 +190,15 @@
 		</form>
 		
 		<!-- 
-		Funktio checResults() on tulosten laskemista varten. Funktion tulee tarkistaa, vastaako kirjoitettu tulos haettua tulosta ja jos ne täsmäävät, annetaan tehtävästä piste.
+		Ehkä pitäisi olla näille eri toimenpiteille erilliset funktiot, joita kutsutaan checkResults()- ja start()-funktioista.
+		Funktio checkResults() on tulosten laskemista varten. Funktion tulee tarkistaa, vastaako kirjoitettu tulos haettua tulosta ja jos ne täsmäävät, annetaan tehtävästä piste.
 		Jos tulos on virheellinen, siitä tulee nolla pistettä. HUOM! Väärää vastausta voisi ehkä korostaa vaihtamalla tekstin väriä. Oikeat vastaukset voisi
-		mahdollisesti näyttää myös.
+		mahdollisesti näyttää myös. Aikalaskuri pysähtyy, jos aikaa on vielä jäljellä. Jos aika loppuu, koetta ei voi enää jatkaa, vaan funktio käynnistyy ja pisteet
+		lasketaan valmiiden tehtävien mukaan (lopuista 0 pistettä).
 
 		<? php
 		function checkResults() {
-			echo "this function checks results and counts points";
+			echo "this function checks results (from database) and counts points";
 			$points = 0;
 		}
 		if(isset($_POST["submit"])) { 
@@ -204,11 +206,11 @@
 		}
 		?>
 
-		Funktio start on kokeen aloittamista varten. Funktio käynnistää aikalaskurin ja tuo kokeen kysymykset näkyviin.
+		Funktio start() on kokeen aloittamista varten. Funktio käynnistää aikalaskurin ja tuo kokeen kysymykset näkyviin sekä lähettää nimen + id:n tietokantaan.
 
 		<? php
 		function start() {
-			echo "this function starts countdown and shows the questions";
+			echo "this function starts countdown and shows the questions. Name and id are added to database";
 		}
 		if(isset($_POST["start"])) { 
 		return start();
