@@ -1,77 +1,14 @@
 <?php
+
+session_start();
+
 $servername = "127.0.0.1:51188";
 $username = "azure";
 $password = "6#vWHD_$";
 $dbname = "localdb";
 $id = $_POST['id'];
 $name = $_POST['name'];
-$BC1 = $_POST['BC1'];
-$BC2 = $_POST['BC2'];
-$BC3 = $_POST['BC3'];
-$BC4 = $_POST['BC4'];
-$BC5 = $_POST['BC5'];
-$BC6 = $_POST['BC6'];
-$BC7 = $_POST['BC7'];
-$BC8 = $_POST['BC8'];
-$BC9 = $_POST['BC9'];
-$BC10 = $_POST['BC10'];
-<!-- odottavat tietokantapäivitystä
-$units1 = $_POST['units1'];
-$units2 = $_POST['units2'];
-$units3 = $_POST['units3'];
-$units4 = $_POST['units4'];
-$units5 = $_POST['units5'];
-$units6 = $_POST['units6'];
-$units7 = $_POST['units7'];
-$units8 = $_POST['units8'];
-$units9 = $_POST['units9'];
-$units10 = $_POST['units10'];
-$units11 = $_POST['units11'];
-$units12 = $_POST['units12'];
-$units13 = $_POST['units13'];
-$units14 = $_POST['units14'];
-$units15 = $_POST['units15'];
-$units16 = $_POST['units16'];
-$units17 = $_POST['units17'];
-$units18 = $_POST['units18'];
-$units19 = $_POST['units19'];
-$units20 = $_POST['units20'];
-
-$per1 = $_POST['per1'];
-$per2 = $_POST['per2'];
-$per3 = $_POST['per3'];
-$per4 = $_POST['per4'];
-$per5 = $_POST['per5'];
-$per6 = $_POST['per6'];
-$per7 = $_POST['per7'];
-$per8 = $_POST['per8'];
-$per9 = $_POST['per9'];
-$per10 = $_POST['per10'];
-
-$esdn1 = $_POST['esdn1'];
-$esdn2 = $_POST['esdn2'];
-$esdn3 = $_POST['esdn3'];
-$esdn4 = $_POST['esdn4'];
-$esdn5 = $_POST['esdn5'];
-$esdn6 = $_POST['esdn6'];
-$esdn7 = $_POST['esdn7'];
-$esdn8 = $_POST['esdn8'];
-$esdn9 = $_POST['esdn9'];
-$esdn10 = $_POST['esdn10'];
-
-$roman1 = $_POST['roman1'];
-$roman2 = $_POST['roman2'];
-$roman3 = $_POST['roman3'];
-$roman4 = $_POST['roman4'];
-$roman5 = $_POST['roman5'];
-$roman6 = $_POST['roman6'];
-$roman7 = $_POST['roman7'];
-$roman8 = $_POST['roman8'];
-$roman9 = $_POST['roman9'];
-$roman10 = $_POST['roman10'];
-
--->
-
+$_SESSION['id'] = $id;
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -81,24 +18,9 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+
 $sql = "INSERT INTO laskuri (ID,Name)
 VALUES ($id, '$name')";
-
-$sql = "INSERT INTO basiccalc (ID,BC1,BC2,BC3,BC4,BC5,BC6,BC7,BC8,BC9,BC10)
-VALUES ($id, $BC1,$BC2,$BC3,$BC4,$BC5,$BC6,$BC7,$BC8,$BC9,$BC10)";
-<!-- Odottavat uusien taulujen luomista tietokantaan, joten kommentoitu ulos
-  $sql = "INSERT INTO units (ID,units1,units2,units3,units4,units5,units6,units7,units8,units9,units10,units11,units12,units13,units14,units15,units16,units17,units18,units19,units20)
-  VALUES ($id, $units1, $units2, $units3, $units4, $units5, $units6, $units7, $units8, $units9, $units10, $units11, $units12, $units13, $units14, $units15, $units16, $units17, $units18, $units19, $units20)";
-  
-  $sql = "INSERT INTO percentage (ID,per1,per2,per3,per4,per5,per6,per7,per8,per9,per10)
-  VALUES ($id, $per1,$per2,$per3,$per4,$per5,$per6,$per7,$per8,$per9,$per10)";
-
-$sql = "INSERT INTO expressions (ID,esdn1,esdn2,esdn3,esdn4,esdn5,esdn6,esdn7,esdn8,esdn9,esdn10)
-VALUES ($id, $esdn1, $esdn2, $esdn3, $esdn4, $esdn5, $esdn6, $esdn7, $esdn8, $esdn9, $esdn10)";
-
-$sql = "INSERT INTO roman (ID,roman1,roman2,roman3,roman4,roman5,roman6,roman7,roman8,roman9,roman10)
-VALUES ($id, $roman1, $roman2, $roman3, $roman4, $roman5, $roman6, $roman7, $roman8, $roman9, $roman10)";
-  -->
   
   
   
@@ -106,9 +28,138 @@ VALUES ($id, $roman1, $roman2, $roman3, $roman4, $roman5, $roman6, $roman7, $rom
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
 } else {
+	
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
 mysqli_close($conn);
-?>
 
+?>
+		
+		
+		
+		<form id="form2" action="result.php" method="post">
+		
+			<h2>Name: <?php echo $_POST["name"]; ?></h>
+			<h2 name="id">ID: <?php echo $_POST["id"]; ?></h2>
+			<h2>Basic Calculations 10 Points</h2><br>
+			<ol>
+				<li> 98 - 56 + 45 = <input type="text" name="BC1"></li>
+				<li> 376 - 678 + 236 = <input type="text" name="BC2"></li>
+				<li> 6 x 7 - 9 x 5 = <input type="text" name="BC3"></li>
+				<li> 56 x 5 + 23 x 9 - 567 = <input type="text" name="BC4"></li>
+				<li> 5.6 x 34 + 21 / 7 = <input type="text" name="BC5"></li>
+				<li> 123.45 x 5.5 = <input type="text" name="BC6"></li>
+				<li> 3276.45 / 8 = <input type="text" name="BC7"></li>
+				<li> 748.5 / 1.5 = <input type="text" name="BC8"></li>
+				<li> 45600 / 100 = <input type="text" name="BC9"></li>
+				<li> 8763 x 100 = <input type="text" name="BC10"></li>
+			</ol>
+			
+					
+			<!-- Kirjoitettu valmiiksi, mutta kommentoitu vielä ulos.
+
+			<br><br>
+   			<h2>Units 20 Points</h2><br>
+			Change to milligrams<br>
+			<ol>
+  		 		<li>  925 micrograms = <input type="text" name="units1"> mg</li>
+				<li> 200 micrograms = <input type="text" name="units2"> mg</li>
+				<li> 1386 micrograms = <input type="text" name="units3"> mg</li>
+				<li> 500 micrograms = <input type="text" name="units4"> mg</li>
+			</ol>
+			<br>
+			Change to grams<br>
+			<ol>
+				<li> 7260 mg = <input type="text" name="units5"> g</li>
+				<li> 80 mg = <input type="text" name="units6"> g</li>
+				<li> 135 mg = <input type="text" name="units7"> g</li>
+				<li> 1250 mg = <input type="text" name="units8"> g</li>
+			</ol>
+			<br>
+			Change to milliliters<br>
+			<ol>
+				<li> 4.5 l = <input type="text" name="units9"> ml</li>
+				<li> 0.9 l = <input type="text" name="units10"> ml</li>
+				<li> 8.5 l = <input type="text" name="units11"> ml</li>
+				<li> 2.2 l = <input type="text" name="units12"> ml</li>
+			</ol>
+			<br>
+			Change to liters<br>
+			<ol>
+				<li> 70 ml = <input type="text" name="units13"> l</li>
+				<li> 725 ml = <input type="text" name="units14"> l</li>
+				<li> 1575 ml = <input type="text" name="units15"> l</li>
+				<li> 3300 ml = <input type="text" name="units16"> l</li>
+			</ol>
+			<br>
+			Change to micrometer<br>
+			<ol>
+				<li> 128 mm = <input type="text" name="units17"> micrometers</li>
+				<li> 32 mm = <input type="text" name="units18"> micrometers</li>
+				<li> 3.55 mm = <input type="text" name="units19"> micrometers</li>
+				<li> 22.45 mm = <input type="text" name="units20"> micrometers</li>
+			</ol>
+			<br><br>
+			
+			<h2> Percentage 10 Points</h2><br>
+			What is
+			<ol>
+				<li> 10 % of 2500 = <input type="text" name="per1"></li>
+				<li> 30 % of 4700 = <input type="text" name="per2"></li>
+				<li> 50 % of 7500 = <input type="text" name="per3"></li>
+				<li> 80 % of 9200 = <input type="text" name="per4"></li>
+				<li> 15 % of 1100 = <input type="text" name="per5"></li>
+				<li> 35 % of 2200 = <input type="text" name="per6"></li>
+				<li> 42 % of 4800 = <input type="text" name="per7"></li>
+			</ol>
+			<br>
+			Find the percentage<br>
+			<ol>
+				<li> 1500 ml out of 2500 ml = <input type="text" name="per8"> %</li> 
+				<li> 1200 ml out of 4000 ml = <input type="text" name="per9"> %</li> 
+				<li> 650 ml out of 1000 ml = <input type="text" name="per10"> %</li> 
+			</ol>
+			<br><br>
+			
+			<h2>Expressions / Simplify / Division & Multiplication (by 10, 100, 1000) 10 Points</h2><br>
+			<ol>
+				<li> x + 45 = 35 What is x? x = <input type="text" name="esdn1"></li> 
+				<li> x - 526 = 445 What is x? x = <input type="text" name="esdn2"></li> 
+				<li> If x = 5 then 2x + 3 - x = <input type="text" name="esdn3"></li> 
+			</ol>
+			<br>
+			Simplify<br>
+			<ol>
+				<li> 275/400 = <input type="text" name="esdn4"></li> 
+				<li> 60/375 = <input type="text" name="esdn5"></li> 
+				<li> 125/300 = <input type="text" name="esdn6"></li> 
+			</ol>
+			<br>
+			Division & Multiplication<br>
+			<ol>
+				<li> 8.25 / 1000 = <input type="text" name="esdn7"></li> 
+				<li> 6.26 x 100 = <input type="text" name="esdn8"></li> 
+				<li> 3.87 / 10 = <input type="text" name="esdn9"></li> 
+				<li> 2.29 / 100 = <input type="text" name="esdn10"></li> 
+			</ol>
+			<br><br>
+			
+			<h2>Roman Numbers 10 Points</h2><br>
+			<ol>
+				<li> IX = <input type="text" name="roman1"></li> 
+				<li> XXXIX = <input type="text" name="roman2"></li> 
+				<li> XXII = <input type="text" name="roman3"></li> 
+				<li> XVI = <input type="text" name="roman4"></li> 
+				<li> XLIV = <input type="text" name="roman5"></li> 
+				<li> 48 = <input type="text" name="roman6"></li> 
+				<li> 32 = <input type="text" name="roman7"></li> 
+				<li> 20 = <input type="text" name="roman8"></li> 
+				<li> 14 = <input type="text" name="roman9"></li> 
+				<li> 45 = <input type="text" name="roman10"></li> 
+			</ol>
+
+			-->    
+			<input type="submit" value="Finish exam!" name="submit" onclick="checkResults()">
+		</form>
+		
