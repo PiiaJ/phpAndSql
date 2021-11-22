@@ -31,9 +31,12 @@ if (mysqli_query($conn, $sql)) {
 	
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
+echo "<br>";
+echo "You have 1 hour to do this exam.";
+echo "<br>";
 
 mysqli_close($conn);
-
+/*
 if(!isset($_SESSION['active_count'])){
     $_SESSION['active_count'] = 3600;
     $_SESSION['time_started'] = time();
@@ -45,17 +48,22 @@ $final_remain_time = $now - $_SESSION['time_started'];
 
 $remainingSeconds = abs($_SESSION['active_count'] - $final_remain_time);
 $remainingMinutes = round($remainingSeconds/60);
-
-echo "<br>";
-echo "You have 1 hour to finish.";
-echo "\n There are $remainingMinutes minutes remaining.";
+if($remainingMinutes > 1) {
+echo "There are $remainingMinutes minutes remaining.";
+} else {
+	echo "There are $remainingSeconds seconds remaining.";
+}
 
 if($remainingSeconds < 1){
    //Finished! Do something.
+   echo "Your time is up!";
 }
-
-
-
+*/
+$endTime = time() + (60 * 60);
+echo "<br>";
+echo 'Starting time:  '.date('H:i:s', time());
+echo "<br>";
+echo 'Your time will finish:  '.date('H:i:s', $endTime);
 ?>
 		
 	<html>	
@@ -67,15 +75,14 @@ if($remainingSeconds < 1){
 		
 			<h3> Welcome <?php echo $_POST["name"]; ?>! Your exam has started.</h3>
 			<h3 name="id">Your student ID is: <?php echo $_POST["id"]; ?></h3>
-			
-
-			
 		
 			<br>
+			
 			<!-- Progress bar, shows how exam progresses. For every answer given progress +1, if answer is set as empty, progress -1.  Total of tasks 57.-->
 			<label for="progression">Your progress:</label>
 			<progress id="progression" value="0" max="57"></progress>
 			
+			<br><br>
 			Notice that you need to use point(.) as decimal separator.
 		
 			<h2>Basic Calculations 10 Points</h2>
