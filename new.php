@@ -2,7 +2,7 @@
 
 session_start();
 
-$servername = "127.0.0.1:51188";
+$servername = "127.0.0.1:49426";
 $username = "azure";
 $password = "6#vWHD_$";
 $dbname = "localdb";
@@ -36,29 +36,39 @@ mysqli_close($conn);
 
 ?>
 		
-		
-		
+	<html>	
+		<head>
+		        <link rel="stylesheet" href="./styles.css">
+		</head>
+		<body>
 		<form id="form2" action="result.php" method="post">
 		
-			<h2>Name: <?php echo $_POST["name"]; ?></h>
-			<h2 name="id">ID: <?php echo $_POST["id"]; ?></h2>
-			<h2>Basic Calculations 10 Points</h2><br>
+			<h3> Welcome <?php echo $_POST["name"]; ?>! Your exam has started.</h3>
+			<h3 name="id">Your student ID is: <?php echo $_POST["id"]; ?></h3>
+			
+			You have 60 minutes to finish. Time remaining: 
+		
+			<br>
+			<!-- Progress bar, shows how exam progresses. For every answer given progress +1, if answer is set as empty, progress -1.  Total of tasks 57.-->
+			<label for="progression">Your progress:</label>
+			<progress id="progression" value="0" max="57"></progress>
+		
+			<h2>Basic Calculations 10 Points</h2>
 			<ol>
-				<li> 98 - 56 + 45 = <input type="text" name="BC1"></li>
-				<li> 376 - 678 + 236 = <input type="text" name="BC2"></li>
-				<li> 6 x 7 - 9 x 5 = <input type="text" name="BC3"></li>
-				<li> 56 x 5 + 23 x 9 - 567 = <input type="text" name="BC4"></li>
-				<li> 5.6 x 34 + 21 / 7 = <input type="text" name="BC5"></li>
-				<li> 123.45 x 5.5 = <input type="text" name="BC6"></li>
-				<li> 3276.45 / 8 = <input type="text" name="BC7"></li>
-				<li> 748.5 / 1.5 = <input type="text" name="BC8"></li>
-				<li> 45600 / 100 = <input type="text" name="BC9"></li>
-				<li> 8763 x 100 = <input type="text" name="BC10"></li>
+				<li> 98 - 56 + 45 = <input type="text" name="BC1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 376 - 678 + 236 = <input type="text" name="BC2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 6 x 7 - 9 x 5 = <input type="text" name="BC3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 56 x 5 + 23 x 9 - 567 = <input type="text" name="BC4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 5.6 x 34 + 21 / 7 = <input type="text" name="BC5" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 123.45 x 5.5 = <input type="text" name="BC6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 3276.45 / 8 = <input type="text" name="BC7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 748.5 / 1.5 = <input type="text" name="BC8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 45600 / 100 = <input type="text" name="BC9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 8763 x 100 = <input type="text" name="BC10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
 			</ol>
 			
 					
 			<!-- Kirjoitettu valmiiksi, mutta kommentoitu vielä ulos.
-
 			<br><br>
    			<h2>Units 20 Points</h2><br>
 			Change to milligrams<br>
@@ -158,8 +168,36 @@ mysqli_close($conn);
 				<li> 14 = <input type="text" name="roman9"></li> 
 				<li> 45 = <input type="text" name="roman10"></li> 
 			</ol>
-
 			-->    
 			<input type="submit" value="Finish exam!" name="submit" onclick="checkResults()">
 		</form>
+		</body>
+		
+		<script>
+		// function to find out if input box has any data inside it 
+		let hasValue = false;
+		function hasText(value) {
+			if (value === "" ) {
+				hasValue = false;
+			} else if (value !== "") {
+				hasValue = true;
+			}
+		}
+
+		// function to change progress in progress bar
+		function makeProgress(value) {
+			if (hasValue == false) {
+				if (value !== "") {
+				document.getElementById("progression").value += 1; 
+				}
+			} else if (hasValue == true) {
+				if (value === "") {
+				document.getElementById("progression").value -= 1;
+				}
+			} 
+		}
+		
+
+		</script>
+		</html>
 		
