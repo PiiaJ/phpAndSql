@@ -34,6 +34,25 @@ if (mysqli_query($conn, $sql)) {
 
 mysqli_close($conn);
 
+if(!isset($_SESSION['active_count'])){
+    $_SESSION['active_count'] = 3600;
+    $_SESSION['time_started'] = time();
+}
+
+$now = time();
+
+$final_remain_time = $now - $_SESSION['time_started'];
+
+$remainingSeconds = abs($_SESSION['active_count'] - $final_remain_time);
+$remainingMinutes = round($remainingSeconds/60);
+
+
+echo "There are $remainingMinutes minutes remaining.";
+
+if($remainingSeconds < 1){
+   //Finished! Do something.
+}
+
 ?>
 		
 	<html>	
