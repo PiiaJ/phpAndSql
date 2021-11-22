@@ -46,12 +46,15 @@ $final_remain_time = $now - $_SESSION['time_started'];
 $remainingSeconds = abs($_SESSION['active_count'] - $final_remain_time);
 $remainingMinutes = round($remainingSeconds/60);
 
-
-echo "There are $remainingMinutes minutes remaining.";
+echo "<br>";
+echo "You have 1 hour to finish.";
+echo "\n There are $remainingMinutes minutes remaining.";
 
 if($remainingSeconds < 1){
    //Finished! Do something.
 }
+
+
 
 ?>
 		
@@ -65,12 +68,15 @@ if($remainingSeconds < 1){
 			<h3> Welcome <?php echo $_POST["name"]; ?>! Your exam has started.</h3>
 			<h3 name="id">Your student ID is: <?php echo $_POST["id"]; ?></h3>
 			
-			You have 60 minutes to finish. Time remaining: 
+
+			
 		
 			<br>
 			<!-- Progress bar, shows how exam progresses. For every answer given progress +1, if answer is set as empty, progress -1.  Total of tasks 57.-->
 			<label for="progression">Your progress:</label>
 			<progress id="progression" value="0" max="57"></progress>
+			
+			Notice that you need to use point(.) as decimal separator.
 		
 			<h2>Basic Calculations 10 Points</h2>
 			<ol>
