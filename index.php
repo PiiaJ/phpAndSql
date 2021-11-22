@@ -22,60 +22,20 @@
 			<br>
 			
 			
-			<!-- Miten halutaan toteuttaa kokeen k√§ynnistys? Tuleeko nimi ja id omaan tiedostoon ja sitten teht√§v√§t toiseen tiedostoon vai j√§tet√§√§nk√∂ kaikki 
-			samaan? Jos laitetaan t√§h√§n kohtaan oma submit nappi, se voi 1. k√§ynnist√§√§ aikalaskurin 2. l√§hett√§√§ nimen ja id:n tietokantaan ja 3. n√§ytt√§√§ teht√§v√§t
+			<!-- Miten halutaan toteuttaa kokeen k‰ynnistys? Tuleeko nimi ja id omaan tiedostoon ja sitten teht‰v‰t toiseen tiedostoon vai j‰tet‰‰nkˆ kaikki 
+			samaan? Jos laitetaan t‰h‰n kohtaan oma submit nappi, se voi 1. k‰ynnist‰‰ aikalaskurin 2. l‰hett‰‰ nimen ja id:n tietokantaan ja 3. n‰ytt‰‰ teht‰v‰t
 			(css-tiedoston?) avulla. -->
 			
 		<input type="submit" value="Start exam!" name="start">
 			
-			
-			<!-- Joko aikalaskuri tai p√§√§ttymisajan tulostus n√§kyviin varsinaiselle koesivulle -->
-			
-			<!-- Esimerkki aikalaskurista (countdown)
-
-			// Set the date we're counting down to, meid√§n tapauksessa timestamp + 1 tunti
-			var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
-
-			// Update the count down every 1 second
-			var x = setInterval(function() {
-
-  			// Get today's date and time
-  			var now = new Date().getTime();
-
-  			// Find the distance between now and the count down date
-  			var distance = countDownDate - now;
-
-  			// Time calculations for hours, minutes and seconds
-  			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  			// Display the result in the element with id="demo"
-  			document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  			+ minutes + "m " + seconds + "s ";
-
-  			// If the count down is finished, write some text, meid√§n tapauksessa k√§ynnistyisi checkResults()-funktio
-  			if (distance < 0) {
-    				clearInterval(x);
-    				document.getElementById("demo").innerHTML = "EXPIRED";
- 			}
-			}, 1000);
-
-			-->
-			
-			<!-- Progress bar, jos halutaan laittaa. Value +1 jokaisesta vastauksesta. Teht√§vi√§ yht. 57.
-			<label for="file">Your progress:</label>
-			<progress id="file" value="0" max="57"> 0 % </progress>
-			-->
 	</form>
 		
 		<!-- 
-		Ehk√§ pit√§isi olla n√§ille eri toimenpiteille erilliset funktiot, joita kutsutaan checkResults()- ja start()-funktioista.
-		Funktio checkResults() on tulosten laskemista varten. Funktion tulee tarkistaa, vastaako kirjoitettu tulos haettua tulosta ja jos ne t√§sm√§√§v√§t, annetaan teht√§v√§st√§ piste.
-		Jos tulos on virheellinen, siit√§ tulee nolla pistett√§. HUOM! V√§√§r√§√§ vastausta voisi ehk√§ korostaa vaihtamalla tekstin v√§ri√§. Oikeat vastaukset voisi
-		mahdollisesti n√§ytt√§√§ my√∂s. Aikalaskuri pys√§htyy, jos aikaa on viel√§ j√§ljell√§. Jos aika loppuu, koetta ei voi en√§√§ jatkaa, vaan funktio k√§ynnistyy ja pisteet
-		lasketaan valmiiden teht√§vien mukaan (lopuista 0 pistett√§).
-
+		Ehk‰ pit‰isi olla n‰ille eri toimenpiteille erilliset funktiot, joita kutsutaan checkResults()- ja start()-funktioista.
+		Funktio checkResults() on tulosten laskemista varten. Funktion tulee tarkistaa, vastaako kirjoitettu tulos haettua tulosta ja jos ne t‰sm‰‰v‰t, annetaan teht‰v‰st‰ piste.
+		Jos tulos on virheellinen, siit‰ tulee nolla pistett‰. HUOM! V‰‰r‰‰ vastausta voisi ehk‰ korostaa vaihtamalla tekstin v‰ri‰. Oikeat vastaukset voisi
+		mahdollisesti n‰ytt‰‰ myˆs. Aikalaskuri pys‰htyy, jos aikaa on viel‰ j‰ljell‰. Jos aika loppuu, koetta ei voi en‰‰ jatkaa, vaan funktio k‰ynnistyy ja pisteet
+		lasketaan valmiiden teht‰vien mukaan (lopuista 0 pistett‰).
 		< php
 		function checkResults() {
 			echo "this function checks results (from database) and counts points";
@@ -85,9 +45,7 @@
 		return checkResults();
 		}
 		?>
-
-		Funktio start() on kokeen aloittamista varten. Funktio k√§ynnist√§√§ aikalaskurin ja tuo kokeen kysymykset n√§kyviin sek√§ l√§hett√§√§ nimen + id:n tietokantaan.
-
+		Funktio start() on kokeen aloittamista varten. Funktio k‰ynnist‰‰ aikalaskurin ja tuo kokeen kysymykset n‰kyviin sek‰ l‰hett‰‰ nimen + id:n tietokantaan.
 		< php
 		function start() {
 			echo "this function starts countdown and shows the questions. Name and id are added to database";
@@ -96,7 +54,6 @@
 		return start();
 		}
 		?>
-
 		-->
 		
 </body>
