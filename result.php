@@ -2,23 +2,24 @@
 
 session_start();
 
-$servername = "127.0.0.1:51188";
+$servername = "127.0.0.1:49426";
 $username = "azure";
 $password = "6#vWHD_$";
 $dbname = "localdb";
 $id = $_SESSION['id'];
 
 
-	$BC1 = $_POST['BC1'];
-	$BC2 = $_POST['BC2'];
-	$BC3 = $_POST['BC3'];
-	$BC4 = $_POST['BC4'];
-	$BC5 = $_POST['BC5'];
-	$BC6 = $_POST['BC6'];
-	$BC7 = $_POST['BC7'];
-	$BC8 = $_POST['BC8'];
-	$BC9 = $_POST['BC9'];
-	$BC10 = $_POST['BC10'];
+    $BC1 = !empty($_POST['BC1']) ? $_POST['BC1'] : "NULL";
+	$BC2 = !empty($_POST['BC2']) ? $_POST['BC2'] : "NULL";
+	$BC3 = !empty($_POST['BC3']) ? $_POST['BC3'] : "NULL";
+	$BC4 = !empty($_POST['BC4']) ? $_POST['BC4'] : "NULL";
+	$BC5 = !empty($_POST['BC5']) ? $_POST['BC5'] : "NULL";
+	$BC6 = !empty($_POST['BC6']) ? $_POST['BC6'] : "NULL";
+	$BC7 = !empty($_POST['BC7']) ? $_POST['BC7'] : "NULL";
+	$BC8 = !empty($_POST['BC8']) ? $_POST['BC8'] : "NULL";
+	$BC9 = !empty($_POST['BC9']) ? $_POST['BC9'] : "NULL";
+	$BC10 = !empty($_POST['BC10']) ? $_POST['BC10'] : "NULL";
+
 
 
 // Create connection
@@ -65,7 +66,6 @@ mysqli_close($conn);
 		$units18 = $_POST['units18'];
 		$units19 = $_POST['units19'];
 		$units20 = $_POST['units20'];
-
 		$per1 = $_POST['per1'];
 		$per2 = $_POST['per2'];
 		$per3 = $_POST['per3'];
@@ -76,7 +76,6 @@ mysqli_close($conn);
 		$per8 = $_POST['per8'];
 		$per9 = $_POST['per9'];
 		$per10 = $_POST['per10'];
-
 		$esdn1 = $_POST['esdn1'];
 		$esdn2 = $_POST['esdn2'];
 		$esdn3 = $_POST['esdn3'];
@@ -87,7 +86,6 @@ mysqli_close($conn);
 		$esdn8 = $_POST['esdn8'];
 		$esdn9 = $_POST['esdn9'];
 		$esdn10 = $_POST['esdn10'];
-
 		$roman1 = $_POST['roman1'];
 		$roman2 = $_POST['roman2'];
 		$roman3 = $_POST['roman3'];
@@ -98,7 +96,6 @@ mysqli_close($conn);
 		$roman8 = $_POST['roman8'];
 		$roman9 = $_POST['roman9'];
 		$roman10 = $_POST['roman10'];
-
 		-->
 		
 <!-- Odottavat uusien taulujen luomista tietokantaan, joten kommentoitu ulos
@@ -107,10 +104,8 @@ mysqli_close($conn);
   
   $sql = "INSERT INTO percentage (ID,per1,per2,per3,per4,per5,per6,per7,per8,per9,per10)
   VALUES ($id, $per1,$per2,$per3,$per4,$per5,$per6,$per7,$per8,$per9,$per10)";
-
 $sql = "INSERT INTO expressions (ID,esdn1,esdn2,esdn3,esdn4,esdn5,esdn6,esdn7,esdn8,esdn9,esdn10)
 VALUES ($id, $esdn1, $esdn2, $esdn3, $esdn4, $esdn5, $esdn6, $esdn7, $esdn8, $esdn9, $esdn10)";
-
 $sql = "INSERT INTO roman (ID,roman1,roman2,roman3,roman4,roman5,roman6,roman7,roman8,roman9,roman10)
 VALUES ($id, $roman1, $roman2, $roman3, $roman4, $roman5, $roman6, $roman7, $roman8, $roman9, $roman10)";
   -->
