@@ -32,7 +32,6 @@ if (mysqli_query($conn, $sql)) {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 echo "<br>";
-echo "You have 1 hour to do this exam.";
 echo "<br>";
 
 mysqli_close($conn);
@@ -59,11 +58,7 @@ if($remainingSeconds < 1){
    echo "Your time is up!";
 }
 */
-$endTime = time() + (60 * 60);
-echo "<br>";
-echo 'Starting time:  '.date('H:i:s', time());
-echo "<br>";
-echo 'Your time will finish:  '.date('H:i:s', $endTime);
+
 ?>
 		
 	<html>	
@@ -73,10 +68,16 @@ echo 'Your time will finish:  '.date('H:i:s', $endTime);
 		<body>
 		<form id="form2" action="result.php" method="post">
 		
-			<h3> Welcome <?php echo $_POST["name"]; ?>! Your exam has started.</h3>
-			<h3 name="id">Your student ID is: <?php echo $_POST["id"]; ?></h3>
-		
-			<br>
+			<h4> Welcome <?php echo $_POST["name"]; ?>, <?php echo $_POST["id"]; ?>! Your exam has started.</h4>
+					
+			<?php
+			$endTime = time() + (60 * 60);
+			echo 'Starting time:  '.date('H:i:s', time());
+			echo "<br>";
+			echo 'Your time will finish:  '.date('H:i:s', $endTime);
+			?>
+			
+			<br><br>
 			
 			<!-- Progress bar, shows how exam progresses. For every answer given progress +1, if answer is set as empty, progress -1.  Total of tasks 57.-->
 			<label for="progression">Your progress:</label>
