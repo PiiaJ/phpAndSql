@@ -2,7 +2,7 @@
 
 session_start();
 
-$servername = "127.0.0.1:49426";
+$servername = "127.0.0.1:51188";
 $username = "azure";
 $password = "6#vWHD_$";
 $dbname = "localdb";
@@ -30,6 +30,8 @@ $rs = mysqli_query($conn,$idCheck);
 if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
     echo "You have already done this exam!";
 	mysqli_close($conn);
+	header("Location: https://2001277.azurewebsites.net/mathtest/result.php"); 
+	exit();
 }
 else
 {
@@ -41,13 +43,14 @@ else
     {
         echo "Error adding user in database<br/>";
     }
-}
+
 
   
 echo "<br>";
 echo "<br>";
 
 mysqli_close($conn);
+}
 /*
 if(!isset($_SESSION['active_count'])){
     $_SESSION['active_count'] = 3600;

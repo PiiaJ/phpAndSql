@@ -2,7 +2,7 @@
 
 session_start();
 
-$servername = "127.0.0.1:49426";
+$servername = "127.0.0.1:51188";
 $username = "azure";
 $password = "6#vWHD_$";
 $dbname = "localdb";
@@ -30,19 +30,31 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO basiccalc (ID,BC1,BC2,BC3,BC4,BC5,BC6,BC7,BC8,BC9,BC10)
-VALUES ($id, $BC1,$BC2,$BC3,$BC4,$BC5,$BC6,$BC7,$BC8,$BC9,$BC10)";
-  
-  
-  
+$idCheck = "SELECT * FROM basiccalc WHERE ID = $id"; 
 
-if (mysqli_query($conn, $sql)) {
-  echo "New record created successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+$rs = mysqli_query($conn,$idCheck);
+
+if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
+    echo "You have already done this exam! Your result was:";
+	mysqli_close($conn);
+	;
+}
+else
+	
+{
+	$sql = "INSERT INTO basiccalc (ID,BC1,BC2,BC3,BC4,BC5,BC6,BC7,BC8,BC9,BC10)
+	VALUES ($id, $BC1,$BC2,$BC3,$BC4,$BC5,$BC6,$BC7,$BC8,$BC9,$BC10)";
+   
+
+	if (mysqli_query($conn, $sql)) {
+		echo "New record created successfully";
+			} else {
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
 mysqli_close($conn);
+
+}
 ?>
 
 		<!-- odottavat tietokantapäivitystä
