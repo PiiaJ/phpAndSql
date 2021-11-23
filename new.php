@@ -22,15 +22,28 @@ if ($conn->connect_error) {
 $sql = "INSERT INTO laskuri (ID,Name)
 VALUES ($id, '$name')";
   
-  
-  
+$idCheck = "SELECT * FROM laskuri WHERE ID = $id"; 
 
-if (mysqli_query($conn, $sql)) {
-  echo "New record created successfully";
-} else {
-	
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+$rs = mysqli_query($conn,$idCheck);
+
+// Check if the person has already made this exam or if new user should be added to database.
+if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
+    echo "You have already done this exam!";
+	mysqli_close($conn);
 }
+else
+{
+    if (mysqli_query($conn,$sql))
+    {
+        echo "New record created.<br/>";
+    }
+    else
+    {
+        echo "Error adding user in database<br/>";
+    }
+}
+
+  
 echo "<br>";
 echo "<br>";
 

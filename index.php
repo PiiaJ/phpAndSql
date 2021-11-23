@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="./styles.css">
 	</head>
 	<body>
-		<!-- Math test < php echo date("F j Y"); ?> -->
-		Time limit: 60 minutes
+
+		<p style="font-weight:bold">This is your math exam. Please fill in your student id and your name to begin. <br> 
+		You have 1 hour to finish. Time starts when you click Start exam. </p>
 	
 		<form id="form1" action="new.php" method="post">
 			Enter your Student ID:<br>
@@ -17,16 +18,12 @@
 			<br>
 	  
 			Enter your name:<br>
-			<input type="text" name="name">
+			<input type="text" name="name" style="width:200px;">
 			<br>
 			<br>
 			
-			
-			<!-- Miten halutaan toteuttaa kokeen käynnistys? Tuleeko nimi ja id omaan tiedostoon ja sitten tehtävät toiseen tiedostoon vai jätetäänkö kaikki 
-			samaan? Jos laitetaan tähän kohtaan oma submit nappi, se voi 1. käynnistää aikalaskurin 2. lähettää nimen ja id:n tietokantaan ja 3. näyttää tehtävät
-			(css-tiedoston?) avulla. -->
-			
-		<input type="submit" value="Start exam!" name="start">
+		
+		<input type="submit" value="Start exam" name="start">
 			
 	</form>
 		

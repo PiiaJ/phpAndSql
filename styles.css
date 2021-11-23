@@ -6,6 +6,7 @@ body {
 h2 {
 	color: blue;
 }
+
 input[type=text] {
 	width: 75px;
 	margin:5px;
@@ -34,3 +35,6 @@ progress::-webkit-progress-value {
 progress::-moz-progress-bar {
 	background-color: green;
 }
+
+
+	
