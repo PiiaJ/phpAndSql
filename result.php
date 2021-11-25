@@ -35,28 +35,22 @@ $idCheck = "SELECT * FROM basiccalc WHERE ID = $id";
 $rs = mysqli_query($conn,$idCheck);
 
 if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
-    echo "You have already done this exam! Your result was:";
+    echo "You have already done this exam!";
 	$sql = "SELECT * FROM grades WHERE ID = $id";
 	 if($result = mysqli_query($conn, $sql)){
 		if(mysqli_num_rows($result) > 0){
-			echo "<table>";
-				echo "<tr>";
-					echo "<th>result</th>";
-				echo "</tr>";
+			echo " Your result was:";
 			while($row = mysqli_fetch_array($result)){
-				echo "<tr>";
-					echo "<td>" . $row['exam'] . "</td>";
-					
-            echo "</tr>";
+					echo " " . $row['exam'] . "/100.";
         }
         echo "</table>";
         // Free result set
         mysqli_free_result($result);
 		mysqli_close($conn);
 	
-	} else{
-        echo "No records matching your query were found.";
-    }
+		} else{
+			echo "No records matching your query were found.";
+		}
 	}
 }
 else
