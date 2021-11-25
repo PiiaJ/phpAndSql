@@ -9,3 +9,4 @@ User's data and results go to a database.
 <ul>
   <li>Tulokset ja pisteet</li> <br>
   <li>Kokeen päättyminen ajan päättyessä</li> <br>
+  <li>Jos kokeen jättää kesken niin mitä tapahtuu</li>
