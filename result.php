@@ -36,8 +36,28 @@ $rs = mysqli_query($conn,$idCheck);
 
 if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
     echo "You have already done this exam! Your result was:";
-	mysqli_close($conn);
-	;
+	$sql = "SELECT * FROM grades WHERE ID = $id";
+	 if($result = mysqli_query($conn, $sql)){
+		if(mysqli_num_rows($result) > 0){
+			echo "<table>";
+				echo "<tr>";
+					echo "<th>result</th>";
+				echo "</tr>";
+			while($row = mysqli_fetch_array($result)){
+				echo "<tr>";
+					echo "<td>" . $row['exam'] . "</td>";
+					
+            echo "</tr>";
+        }
+        echo "</table>";
+        // Free result set
+        mysqli_free_result($result);
+		mysqli_close($conn);
+	
+	} else{
+        echo "No records matching your query were found.";
+    }
+	}
 }
 else
 	
