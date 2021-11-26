@@ -2,7 +2,7 @@
 
 session_start();
 
-$servername = "127.0.0.1:51188";
+$servername = "127.0.0.1:49426";
 $username = "azure";
 $password = "6#vWHD_$";
 $dbname = "localdb";
@@ -44,6 +44,8 @@ else
 {
 	$sql = "INSERT INTO basiccalc (ID,BC1,BC2,BC3,BC4,BC5,BC6,BC7,BC8,BC9,BC10)
 	VALUES ($id, $BC1,$BC2,$BC3,$BC4,$BC5,$BC6,$BC7,$BC8,$BC9,$BC10)";
+	
+
    
 
 	if (mysqli_query($conn, $sql)) {
