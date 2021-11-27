@@ -62,6 +62,7 @@ else
 	
 	while ($i<=10){
 		
+		//create some variables that we are able to loop
 		$value = '$BC' . $i . 'res';
 		$column = '$BC' . $i;
 		$presult = 'BC' . $i . 'res';
@@ -71,11 +72,18 @@ else
 		
 		if ( mysqli_num_rows ($result) > 0){
 			while($data = mysqli_fetch_array($result)){
+				echo "Right answer: ";
 				echo $data["$presult"];
-					if ($data["$presult"] = $column) {
+					//BC1 -> pitäisi saada toimimaan muuttujana
+					if (intval($data["$presult"]) == intval($BC1)) {
 						$points++;
-					} else {
-						return;
+						echo "Your answer: ";
+						echo $BC1;
+						echo "true";
+					}	else {
+						echo "Your answer: ";
+						echo $BC1;
+						echo "false";
 					}
 				echo "<br>";
 			}
