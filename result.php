@@ -2,7 +2,7 @@
 
 session_start();
 
-$servername = "127.0.0.1:49426";
+$servername = "127.0.0.1:51188";
 $username = "azure";
 $password = "6#vWHD_$";
 $dbname = "localdb";
@@ -56,10 +56,37 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 else
 	
 {
-	$sql = "INSERT INTO basiccalc (ID,BC1,BC2,BC3,BC4,BC5,BC6,BC7,BC8,BC9,BC10)
-	VALUES ($id, $BC1,$BC2,$BC3,$BC4,$BC5,$BC6,$BC7,$BC8,$BC9,$BC10)";
 	
-
+	$points = 0;
+	$i=1;
+	
+	while ($i<=10){
+		
+		$value = '$BC' . $i . 'res';
+		$column = '$BC' . $i;
+		$presult = 'BC' . $i . 'res';
+		$query = "SELECT * FROM results";
+		
+		$result = mysqli_query ($conn, $query);
+		
+		if ( mysqli_num_rows ($result) > 0){
+			while($data = mysqli_fetch_array($result)){
+				echo $data["$presult"];
+					if ($data["$presult"] = $column) {
+						$points++;
+					} else {
+						return;
+					}
+				echo "<br>";
+			}
+		}else{
+			echo "No Records Found!";
+		}
+	$i+=1;	
+	}
+	
+	$sql = "INSERT INTO grades (ID,exam)
+	VALUES ($id, $points)";
    
 
 	if (mysqli_query($conn, $sql)) {
