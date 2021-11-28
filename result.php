@@ -75,14 +75,15 @@ else
 				echo "Right answer: ";
 				echo $data["$presult"];
 					//BC1 -> pitäisi saada toimimaan muuttujana
-					if (intval($data["$presult"]) == intval($BC1)) {
+					
+			if (intval($data["$presult"]) == ${'BC'. $i}) {
 						$points++;
 						echo "Your answer: ";
-						echo $BC1;
+						echo ${'BC'. $i};
 						echo "true";
 					}	else {
 						echo "Your answer: ";
-						echo $BC1;
+						echo ${'BC'. $i};
 						echo "false";
 					}
 				echo "<br>";
