@@ -191,7 +191,7 @@ if($remainingSeconds < 1){
 			<ol>
 				<li> 8.25 / 1000 = <input type=number step=any name="esdn7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 				<li> 6.26 x 100 = <input type=number step=any name="esdn8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
-				<li> 3.87 / 10 = <input type=number step=any name="esdn9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 3.87 x 10 = <input type=number step=any name="esdn9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 				<li> 2.29 / 100 = <input type=number step=any name="esdn10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 			</ol>
 			<br><br>
