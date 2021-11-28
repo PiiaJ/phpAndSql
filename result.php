@@ -41,6 +41,28 @@ $id = $_SESSION['id'];
 	$units19 = !empty($_POST['units19']) ? $_POST['units19'] : "NULL";
 	$units20 = !empty($_POST['units20']) ? $_POST['units20'] : "NULL";
 
+	$per1 = !empty($_POST['per1']) ? $_POST['per1'] : "NULL";
+	$per2 = !empty($_POST['per2']) ? $_POST['per2'] : "NULL";
+	$per3 = !empty($_POST['per3']) ? $_POST['per3'] : "NULL";
+	$per4 = !empty($_POST['per4']) ? $_POST['per4'] : "NULL";
+	$per5 = !empty($_POST['per5']) ? $_POST['per5'] : "NULL";
+	$per6 = !empty($_POST['per6']) ? $_POST['per6'] : "NULL";
+	$per7 = !empty($_POST['per7']) ? $_POST['per7'] : "NULL";
+	$per8 = !empty($_POST['per8']) ? $_POST['per8'] : "NULL";
+	$per9 = !empty($_POST['per9']) ? $_POST['per9'] : "NULL";
+	$per10 = !empty($_POST['per10']) ? $_POST['per10'] : "NULL";
+
+	$esdn1 = !empty($_POST['esdn1']) ? $_POST['esdn1'] : "NULL";
+	$esdn2 = !empty($_POST['esdn2']) ? $_POST['esdn2'] : "NULL";
+	$esdn3 = !empty($_POST['esdn3']) ? $_POST['esdn3'] : "NULL";
+	$esdn4 = !empty($_POST['esdn4']) ? $_POST['esdn4'] : "NULL";
+	$esdn5 = !empty($_POST['esdn5']) ? $_POST['esdn5'] : "NULL";
+	$esdn6 = !empty($_POST['esdn6']) ? $_POST['esdn6'] : "NULL";
+	$esdn7 = !empty($_POST['esdn7']) ? $_POST['esdn7'] : "NULL";
+	$esdn8 = !empty($_POST['esdn8']) ? $_POST['esdn8'] : "NULL";
+	$esdn9 = !empty($_POST['esdn9']) ? $_POST['esdn9'] : "NULL";
+	$esdn10 = !empty($_POST['esdn10']) ? $_POST['esdn10'] : "NULL";
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -78,8 +100,12 @@ else
 	$totalPoints = 0;
 	$bcPoints = 0;
 	$unitsPoints = 0;
+	$perPoints = 0;
+	$esdnPoints = 0;
 	$i=1;
-	
+	echo "Correct answer / ";
+	echo " Your answer /";
+	echo " True/false <br>";
 	// basiccalc
 	while ($i<=10){
 		
@@ -91,19 +117,19 @@ else
 		
 		if ( mysqli_num_rows ($result) > 0){
 			while($data = mysqli_fetch_array($result)){
-				echo "Correct answer: ";
-				echo $data["$presult"];
+				//echo "Correct answer: ";
+				echo $data["$presult"]."  /  ";
 				
 				if (intval($data["$presult"]) == ${'BC'. $i}) {
 					$totalPoints++;
 					$bcPoints++;
-					echo " Your answer: ";
-					echo ${'BC'. $i};
-					echo " true";
+					//echo " Your answer: ";
+					echo ${'BC'. $i}." ";
+					echo "/ true";
 				}	else {
-					echo "Your answer: ";
-					echo ${'BC'. $i};
-					echo " false";
+					//echo "Your answer: ";
+					echo ${'BC'. $i}." ";
+					echo "/ false";
 				}
 				echo "<br>";
 			}
@@ -112,8 +138,10 @@ else
 		}
 	$i+=1;	
 	}
-	echo "Basic Calculations points: ".$bcPoints."/10 <br>";
-$i=1;
+	echo "<br>Basic Calculations points: ".$bcPoints."/10 <br><br>";
+
+	// reset i
+	$i=1;
 
 	// units
 	while ($i<=20){
@@ -127,31 +155,26 @@ $i=1;
 		
 		if ( mysqli_num_rows ($result) > 0){
 			while($data = mysqli_fetch_array($result)){
-				echo "Correct answer: ";
-				echo $data["$presult"];
+				echo $data["$presult"]."  /  ";
 				if ($i > 8 && $i < 13 || $i > 16 && $i < 21) {
 					if (intval($data["$presult"]) == ${'units'. $i}) {
 						$totalPoints++;
 						$unitsPoints++;
-						echo " Your answer: ";
-						echo ${'units'. $i};
-						echo " true";
+						echo ${'units'. $i}." ";
+						echo "/ true";
 					} else {
-						echo "Your answer: ";
-						echo ${'units'. $i};
-						echo " false";
+						echo ${'units'. $i}." ";
+						echo "/ false";
 					}
 				} else {
 					if (floatval($data["$presult"]) == ${'units'. $i}) {
 						$totalPoints++;
 						$unitsPoints++;
-						echo " Your answer: ";
-						echo ${'units'. $i};
-						echo " true";
+						echo ${'units'. $i}." ";
+						echo "/ true";
 					}	else {
-						echo " Your answer: ";
-						echo ${'units'. $i};
-						echo " false";
+						echo ${'units'. $i}." ";
+						echo "/ false";
 					}
 				}
 				echo "<br>";
@@ -161,63 +184,120 @@ $i=1;
 		}
 	$i += 1;	
 	}
-	echo "Your Units points: ".$unitsPoints."/20 <br>";
-	$sql = "INSERT INTO grades (ID,exam)
-	VALUES ($id, $totalPoints)";
-   echo "Your total points: " .$totalPoints. "<br>";
+	echo "<br>Your Units points: ".$unitsPoints."/20 <br><br>";
 
-	if (mysqli_query($conn, $sql)) {
-		echo "New record created successfully";
-			} else {
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+// reset i
+$i = 1;
+
+// percentages
+
+while ($i<=10){
+$presult = 'per' . $i . 'res';
+$query = "SELECT * FROM results";
+
+$result = mysqli_query ($conn, $query);
+
+if ( mysqli_num_rows ($result) > 0){
+	while($data = mysqli_fetch_array($result)){
+		echo $data["$presult"]."  /  ";
+		
+		if (intval($data["$presult"]) == ${'per'. $i}) {
+			$totalPoints++;
+			$perPoints++;
+			echo ${'per'. $i}." ";
+			echo "/ true";
+		}	else {
+			echo ${'per'. $i}." ";
+			echo "/ false";
+		}
+		echo "<br>";
+	}
+}else{
+	echo "No Records Found!";
 }
+$i+=1;	
+}
+echo "<br>Percentage points: ".$perPoints."/10 <br><br>";
+ // reset i
+ $i=1;
 
+// expressions, simplify, division & multiplication
+ while ($i<=10){
+		
+	//create some variables that we are able to loop
+	$presult = 'esdm' . $i . 'res';
+	$query = "SELECT * FROM results";
+		
+	$result = mysqli_query ($conn, $query);
+	
+
+		
+	if ( mysqli_num_rows ($result) > 0){
+		while($data = mysqli_fetch_array($result)){
+			echo $data["$presult"]."  /  ";
+			if($i > 0 && $i < 4){	
+				if (intval($data["$presult"]) == ${'esdn'. $i}) {
+					$totalPoints++;
+					$esdnPoints++;
+					echo ${'esdn'. $i}." ";
+					echo "/ true";
+				} else {
+					echo ${'esdn'. $i}." ";
+					echo "/ false";
+				}
+			}
+			if($i > 3 && $i < 7){	
+				if (strval($data["$presult"]) == ${'esdn'. $i}) {
+					$totalPoints++;
+					$esdnPoints++;
+					echo ${'esdn'. $i}." ";
+					echo "/ true";
+				} else {
+					echo ${'esdn'. $i}." ";
+					echo "/ false";
+				}
+			}
+			if($i > 6 && $i <= 10){	
+				if (floatval($data["$presult"]) == ${'esdn'. $i}) {
+					$totalPoints++;
+					$esdnPoints++;
+					echo ${'esdn'. $i}." ";
+					echo "/ true";
+				} else {
+					echo ${'esdn'. $i}." ";
+					echo "/ false";
+				}
+			}
+				echo "<br>";
+		}
+	}else{
+		echo "No Records Found!";
+	}
+	$i+=1;	
+}
+echo "<br>Expression, Simplify etc. points: ".$esdnPoints."/10 <br><br>";
+$i = 0;
+
+ $sql = "INSERT INTO grades (ID,exam)
+VALUES ($id, $totalPoints)";
+echo "<br>Your total points: " . $totalPoints . "<br>";
+
+if (mysqli_query($conn, $sql)) {
+	echo "New record created successfully";
+		} else {
+	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
 mysqli_close($conn);
 
 }
+
 ?>
 
-		<!-- odottavat tietokantapäivitystä
-		$units1 = $_POST['units1'];
-		$units2 = $_POST['units2'];
-		$units3 = $_POST['units3'];
-		$units4 = $_POST['units4'];
-		$units5 = $_POST['units5'];
-		$units6 = $_POST['units6'];
-		$units7 = $_POST['units7'];
-		$units8 = $_POST['units8'];
-		$units9 = $_POST['units9'];
-		$units10 = $_POST['units10'];
-		$units11 = $_POST['units11'];
-		$units12 = $_POST['units12'];
-		$units13 = $_POST['units13'];
-		$units14 = $_POST['units14'];
-		$units15 = $_POST['units15'];
-		$units16 = $_POST['units16'];
-		$units17 = $_POST['units17'];
-		$units18 = $_POST['units18'];
-		$units19 = $_POST['units19'];
-		$units20 = $_POST['units20'];
-		$per1 = $_POST['per1'];
-		$per2 = $_POST['per2'];
-		$per3 = $_POST['per3'];
-		$per4 = $_POST['per4'];
-		$per5 = $_POST['per5'];
-		$per6 = $_POST['per6'];
-		$per7 = $_POST['per7'];
-		$per8 = $_POST['per8'];
-		$per9 = $_POST['per9'];
-		$per10 = $_POST['per10'];
-		$esdn1 = $_POST['esdn1'];
-		$esdn2 = $_POST['esdn2'];
-		$esdn3 = $_POST['esdn3'];
-		$esdn4 = $_POST['esdn4'];
-		$esdn5 = $_POST['esdn5'];
-		$esdn6 = $_POST['esdn6'];
-		$esdn7 = $_POST['esdn7'];
-		$esdn8 = $_POST['esdn8'];
-		$esdn9 = $_POST['esdn9'];
-		$esdn10 = $_POST['esdn10'];
+<!--
+
+
+		
+
 		$roman1 = $_POST['roman1'];
 		$roman2 = $_POST['roman2'];
 		$roman3 = $_POST['roman3'];
@@ -228,9 +308,9 @@ mysqli_close($conn);
 		$roman8 = $_POST['roman8'];
 		$roman9 = $_POST['roman9'];
 		$roman10 = $_POST['roman10'];
-		-->
-		
-<!-- Odottavat uusien taulujen luomista tietokantaan, joten kommentoitu ulos
+
+  $sql = "INSERT INTO basiccald (ID,BC1,BC2,BC3,BC4,BC15BC6,BC7,BC8,BC9,BC10)
+  VALUES ($id, $BC1,$BC2,$BC3,$BC4,$BC5,$BC6,$BC7,$BC8,$BC9,$BC10)";
   $sql = "INSERT INTO units (ID,units1,units2,units3,units4,units5,units6,units7,units8,units9,units10,units11,units12,units13,units14,units15,units16,units17,units18,units19,units20)
   VALUES ($id, $units1, $units2, $units3, $units4, $units5, $units6, $units7, $units8, $units9, $units10, $units11, $units12, $units13, $units14, $units15, $units16, $units17, $units18, $units19, $units20)";
   
@@ -240,4 +320,4 @@ $sql = "INSERT INTO expressions (ID,esdn1,esdn2,esdn3,esdn4,esdn5,esdn6,esdn7,es
 VALUES ($id, $esdn1, $esdn2, $esdn3, $esdn4, $esdn5, $esdn6, $esdn7, $esdn8, $esdn9, $esdn10)";
 $sql = "INSERT INTO roman (ID,roman1,roman2,roman3,roman4,roman5,roman6,roman7,roman8,roman9,roman10)
 VALUES ($id, $roman1, $roman2, $roman3, $roman4, $roman5, $roman6, $roman7, $roman8, $roman9, $roman10)";
-  -->
+-->

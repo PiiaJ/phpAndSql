@@ -32,22 +32,14 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 	mysqli_close($conn);
 	header("Location: https://2001277.azurewebsites.net/mathtest/result.php"); 
 	exit();
-}
-else
-{
-    if (mysqli_query($conn,$sql))
-    {
+} else {
+    if (mysqli_query($conn,$sql)) {
         echo "New record created.<br/>";
-    }
-    else
-    {
+    } else {
         echo "Error adding user in database<br/>";
     }
 
-
-  
-echo "<br>";
-echo "<br>";
+echo "<br><br>";
 
 mysqli_close($conn);
 }
@@ -119,7 +111,7 @@ if($remainingSeconds < 1){
 				
 
 			<br><br>
-   			<h2>Units 20 Points</h2><br>
+   			<h2>Units 20 Points</h2>
 			Change to milligrams<br>
 			<ol>
   		 		<li>  925 micrograms = <input type="text" name="units1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
@@ -160,27 +152,27 @@ if($remainingSeconds < 1){
 				<li> 22.45 mm = <input type="text" name="units20" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
 			</ol>
 			<br><br>
-						<!-- Kirjoitettu valmiiksi, mutta kommentoitu vielä ulos.
+						
 			<h2> Percentage 10 Points</h2><br>
 			What is
 			<ol>
-				<li> 10 % of 2500 = <input type="text" name="per1"></li>
-				<li> 30 % of 4700 = <input type="text" name="per2"></li>
-				<li> 50 % of 7500 = <input type="text" name="per3"></li>
-				<li> 80 % of 9200 = <input type="text" name="per4"></li>
-				<li> 15 % of 1100 = <input type="text" name="per5"></li>
-				<li> 35 % of 2200 = <input type="text" name="per6"></li>
-				<li> 42 % of 4800 = <input type="text" name="per7"></li>
+				<li> 10 % of 2500 = <input type="number" name="per1"></li>
+				<li> 30 % of 4700 = <input type="number" name="per2"></li>
+				<li> 50 % of 7500 = <input type="number" name="per3"></li>
+				<li> 80 % of 9200 = <input type="number" name="per4"></li>
+				<li> 15 % of 1100 = <input type="number" name="per5"></li>
+				<li> 35 % of 2200 = <input type="number" name="per6"></li>
+				<li> 42 % of 4800 = <input type="number" name="per7"></li>
 			</ol>
 			<br>
 			Find the percentage<br>
 			<ol>
-				<li> 1500 ml out of 2500 ml = <input type="text" name="per8"> %</li> 
-				<li> 1200 ml out of 4000 ml = <input type="text" name="per9"> %</li> 
-				<li> 650 ml out of 1000 ml = <input type="text" name="per10"> %</li> 
+				<li> 1500 ml out of 2500 ml = <input type="number" name="per8"> %</li> 
+				<li> 1200 ml out of 4000 ml = <input type="number" name="per9"> %</li> 
+				<li> 650 ml out of 1000 ml = <input type="number" name="per10"> %</li> 
 			</ol>
 			<br><br>
-			
+
 			<h2>Expressions / Simplify / Division & Multiplication (by 10, 100, 1000) 10 Points</h2><br>
 			<ol>
 				<li> x + 45 = 35 What is x? x = <input type="text" name="esdn1"></li> 
@@ -203,7 +195,7 @@ if($remainingSeconds < 1){
 				<li> 2.29 / 100 = <input type="text" name="esdn10"></li> 
 			</ol>
 			<br><br>
-			
+						<!-- Kirjoitettu valmiiksi, mutta kommentoitu vielä ulos.
 			<h2>Roman Numbers 10 Points</h2><br>
 			<ol>
 				<li> IX = <input type="text" name="roman1"></li> 
@@ -230,10 +222,7 @@ if($remainingSeconds < 1){
 				hasValue = false;
 			} else if (value !== "" && isNaN(value)) {
 				hasValue = true;
-			} else {
-				alarm("This is not a number, please correct");
-				hasValue = false;
-			}
+			} 
 		}
 
 		// function to change progress in progress bar
