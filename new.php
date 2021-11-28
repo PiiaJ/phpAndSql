@@ -2,7 +2,7 @@
 
 session_start();
 
-$servername = "127.0.0.1:51188";
+$servername = "127.0.0.1:49426";
 $username = "azure";
 $password = "6#vWHD_$";
 $dbname = "localdb";

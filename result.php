@@ -2,7 +2,7 @@
 
 session_start();
 
-$servername = "127.0.0.1:51188";
+$servername = "127.0.0.1:49426";
 $username = "azure";
 $password = "6#vWHD_$";
 $dbname = "localdb";
@@ -84,8 +84,6 @@ else
 	while ($i<=10){
 		
 		//create some variables that we are able to loop
-		$value = '$BC' . $i . 'res';
-		$column = '$BC' . $i;
 		$presult = 'BC' . $i . 'res';
 		$query = "SELECT * FROM results";
 		
@@ -115,14 +113,13 @@ else
 	$i+=1;	
 	}
 	echo "Basic Calculations points: ".$bcPoints."/10 <br>";
-
+$i=1;
 
 	// units
 	while ($i<=20){
 		
-		//create some variables that we are able to loop
-		$value = '$units' . $i . 'res';
-		$column = '$units' . $i;
+		//create some variables that we are able to use in loop
+
 		$presult = 'units' . $i . 'res';
 		$query = "SELECT * FROM results";
 		
@@ -147,7 +144,7 @@ else
 				} else {
 					if (floatval($data["$presult"]) == ${'units'. $i}) {
 						$totalPoints++;
-						$bcPoints++;
+						$unitsPoints++;
 						echo " Your answer: ";
 						echo ${'units'. $i};
 						echo " true";
