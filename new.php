@@ -114,102 +114,102 @@ if($remainingSeconds < 1){
    			<h2>Units 20 Points</h2>
 			Change to milligrams<br>
 			<ol>
-  		 		<li>  925 micrograms = <input type="text" name="units1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
-				<li> 200 micrograms = <input type="text" name="units2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
-				<li> 1386 micrograms = <input type="text" name="units3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
-				<li> 500 micrograms = <input type="text" name="units4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
+  		 		<li>  925 micrograms = <input type=number step=any name="units1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
+				<li> 200 micrograms = <input type=number step=any name="units2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
+				<li> 1386 micrograms = <input type=number step=any name="units3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
+				<li> 500 micrograms = <input type=number step=any name="units4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
 			</ol>
 			<br>
 			Change to grams<br>
 			<ol>
-				<li> 7260 mg = <input type="text" name="units5"  onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
-				<li> 80 mg = <input type="text" name="units6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
-				<li> 135 mg = <input type="text" name="units7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
-				<li> 1250 mg = <input type="text" name="units8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
+				<li> 7260 mg = <input type=number step=any name="units5"  onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
+				<li> 80 mg = <input type=number step=any name="units6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
+				<li> 135 mg = <input type=number step=any name="units7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
+				<li> 1250 mg = <input type=number step=any name="units8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
 			</ol>
 			<br>
 			Change to milliliters<br>
 			<ol>
-				<li> 4.5 l = <input type="text" name="units9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
-				<li> 0.9 l = <input type="text" name="units10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
-				<li> 8.5 l = <input type="text" name="units11" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
-				<li> 2.2 l = <input type="text" name="units12" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
+				<li> 4.5 l = <input type=number step=any name="units9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
+				<li> 0.9 l = <input type=number step=any name="units10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
+				<li> 8.5 l = <input type=number step=anyname="units11" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
+				<li> 2.2 l = <input type=number step=anyname="units12" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
 			</ol>
 			<br>
 			Change to liters<br>
 			<ol>
-				<li> 70 ml = <input type="text" name="units13" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
-				<li> 725 ml = <input type="text" name="units14" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
-				<li> 1575 ml = <input type="text" name="units15" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
-				<li> 3300 ml = <input type="text" name="units16" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
+				<li> 70 ml = <input type=number step=any name="units13" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
+				<li> 725 ml = <input type=number step=any name="units14" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
+				<li> 1575 ml = <input type=number step=any name="units15" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
+				<li> 3300 ml = <input type=number step=any name="units16" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
 			</ol>
 			<br>
 			Change to micrometer<br>
 			<ol>
-				<li> 128 mm = <input type="text" name="units17" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
-				<li> 32 mm = <input type="text" name="units18" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
-				<li> 3.55 mm = <input type="text" name="units19" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
-				<li> 22.45 mm = <input type="text" name="units20" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
+				<li> 128 mm = <input type=number step=any name="units17" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
+				<li> 32 mm = <input type=number step=any name="units18" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
+				<li> 3.55 mm = <input type=number step=any name="units19" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
+				<li> 22.45 mm = <input type=number step=any name="units20" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
 			</ol>
 			<br><br>
 						
 			<h2> Percentage 10 Points</h2><br>
 			What is
 			<ol>
-				<li> 10 % of 2500 = <input type="number" name="per1"></li>
-				<li> 30 % of 4700 = <input type="number" name="per2"></li>
-				<li> 50 % of 7500 = <input type="number" name="per3"></li>
-				<li> 80 % of 9200 = <input type="number" name="per4"></li>
-				<li> 15 % of 1100 = <input type="number" name="per5"></li>
-				<li> 35 % of 2200 = <input type="number" name="per6"></li>
-				<li> 42 % of 4800 = <input type="number" name="per7"></li>
+				<li> 10 % of 2500 = <input type="number" name="per1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 30 % of 4700 = <input type="number" name="per2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 50 % of 7500 = <input type="number" name="per3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 80 % of 9200 = <input type="number" name="per4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 15 % of 1100 = <input type="number" name="per5" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 35 % of 2200 = <input type="number" name="per6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 42 % of 4800 = <input type="number" name="per7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
 			</ol>
 			<br>
 			Find the percentage<br>
 			<ol>
-				<li> 1500 ml out of 2500 ml = <input type="number" name="per8"> %</li> 
-				<li> 1200 ml out of 4000 ml = <input type="number" name="per9"> %</li> 
-				<li> 650 ml out of 1000 ml = <input type="number" name="per10"> %</li> 
+				<li> 1500 ml out of 2500 ml = <input type="number" name="per8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> %</li> 
+				<li> 1200 ml out of 4000 ml = <input type="number" name="per9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> %</li> 
+				<li> 650 ml out of 1000 ml = <input type="number" name="per10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> %</li> 
 			</ol>
 			<br><br>
 
 			<h2>Expressions / Simplify / Division & Multiplication (by 10, 100, 1000) 10 Points</h2><br>
 			<ol>
-				<li> x + 45 = 35 What is x? x = <input type="text" name="esdn1"></li> 
-				<li> x - 526 = 445 What is x? x = <input type="text" name="esdn2"></li> 
-				<li> If x = 5 then 2x + 3 - x = <input type="text" name="esdn3"></li> 
+				<li> x + 45 = 35 What is x? x = <input type=number step=any name="esdn1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> x - 526 = 445 What is x? x = <input type=number step=any name="esdn2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> If x = 5 then 2x + 3 - x = <input type=number step=any name="esdn3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 			</ol>
 			<br>
 			Simplify<br>
 			<ol>
-				<li> 275/400 = <input type="text" name="esdn4"></li> 
-				<li> 60/375 = <input type="text" name="esdn5"></li> 
-				<li> 125/300 = <input type="text" name="esdn6"></li> 
+				<li> 275/400 = <input type="text" name="esdn4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 60/375 = <input type="text" name="esdn5" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 125/300 = <input type="text" name="esdn6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 			</ol>
 			<br>
 			Division & Multiplication<br>
 			<ol>
-				<li> 8.25 / 1000 = <input type="text" name="esdn7"></li> 
-				<li> 6.26 x 100 = <input type="text" name="esdn8"></li> 
-				<li> 3.87 / 10 = <input type="text" name="esdn9"></li> 
-				<li> 2.29 / 100 = <input type="text" name="esdn10"></li> 
+				<li> 8.25 / 1000 = <input type=number step=any name="esdn7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 6.26 x 100 = <input type=number step=any name="esdn8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 3.87 / 10 = <input type=number step=any name="esdn9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 2.29 / 100 = <input type=number step=any name="esdn10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 			</ol>
 			<br><br>
-						<!-- Kirjoitettu valmiiksi, mutta kommentoitu vielä ulos.
+
 			<h2>Roman Numbers 10 Points</h2><br>
 			<ol>
-				<li> IX = <input type="text" name="roman1"></li> 
-				<li> XXXIX = <input type="text" name="roman2"></li> 
-				<li> XXII = <input type="text" name="roman3"></li> 
-				<li> XVI = <input type="text" name="roman4"></li> 
-				<li> XLIV = <input type="text" name="roman5"></li> 
-				<li> 48 = <input type="text" name="roman6"></li> 
-				<li> 32 = <input type="text" name="roman7"></li> 
-				<li> 20 = <input type="text" name="roman8"></li> 
-				<li> 14 = <input type="text" name="roman9"></li> 
-				<li> 45 = <input type="text" name="roman10"></li> 
+				<li> IX = <input type="number" name="roman1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> XXXIX = <input type="number" name="roman2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> XXII = <input type="number" name="roman3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> XVI = <input type="number" name="roman4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> XLIV = <input type="number" name="roman5" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 48 = <input type="text" name="roman6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 32 = <input type="text" name="roman7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 20 = <input type="text" name="roman8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 14 = <input type="text" name="roman9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
+				<li> 45 = <input type="text" name="roman10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 			</ol>
-			-->   
+			
 			<input type="submit" value="Finish exam!" name="submit">
 		</form>
 		</body>
@@ -217,12 +217,17 @@ if($remainingSeconds < 1){
 		<script>
 		// function to find out if input box has any data inside it 
 		let hasValue = false;
+		var eType = element.getAttribute('type');
 		function hasText(value) {
 			if (value === "" ) {
 				hasValue = false;
-			} else if (value !== "" && isNaN(value)) {
+			} else if (value !== "" && !isNaN(value) && eType===number) {
 				hasValue = true;
-			} 
+			} else if (value !== "" && eType===text) {
+				hasValue = true;
+			}  else {
+				hasValue = false;
+			}
 		}
 
 		// function to change progress in progress bar
