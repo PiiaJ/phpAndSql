@@ -116,51 +116,51 @@ if($remainingSeconds < 1){
 				<li> 8763 x 100 = <input type="number" name="BC10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
 			</ol>
 			
-			<!-- Kirjoitettu valmiiksi, mutta kommentoitu vielä ulos.				
+				
 
 			<br><br>
    			<h2>Units 20 Points</h2><br>
 			Change to milligrams<br>
 			<ol>
-  		 		<li>  925 micrograms = <input type="text" name="units1"> mg</li>
-				<li> 200 micrograms = <input type="text" name="units2"> mg</li>
-				<li> 1386 micrograms = <input type="text" name="units3"> mg</li>
-				<li> 500 micrograms = <input type="text" name="units4"> mg</li>
+  		 		<li>  925 micrograms = <input type="text" name="units1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
+				<li> 200 micrograms = <input type="text" name="units2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
+				<li> 1386 micrograms = <input type="text" name="units3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
+				<li> 500 micrograms = <input type="text" name="units4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
 			</ol>
 			<br>
 			Change to grams<br>
 			<ol>
-				<li> 7260 mg = <input type="text" name="units5"> g</li>
-				<li> 80 mg = <input type="text" name="units6"> g</li>
-				<li> 135 mg = <input type="text" name="units7"> g</li>
-				<li> 1250 mg = <input type="text" name="units8"> g</li>
+				<li> 7260 mg = <input type="text" name="units5"  onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
+				<li> 80 mg = <input type="text" name="units6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
+				<li> 135 mg = <input type="text" name="units7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
+				<li> 1250 mg = <input type="text" name="units8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
 			</ol>
 			<br>
 			Change to milliliters<br>
 			<ol>
-				<li> 4.5 l = <input type="text" name="units9"> ml</li>
-				<li> 0.9 l = <input type="text" name="units10"> ml</li>
-				<li> 8.5 l = <input type="text" name="units11"> ml</li>
-				<li> 2.2 l = <input type="text" name="units12"> ml</li>
+				<li> 4.5 l = <input type="text" name="units9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
+				<li> 0.9 l = <input type="text" name="units10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
+				<li> 8.5 l = <input type="text" name="units11" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
+				<li> 2.2 l = <input type="text" name="units12" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
 			</ol>
 			<br>
 			Change to liters<br>
 			<ol>
-				<li> 70 ml = <input type="text" name="units13"> l</li>
-				<li> 725 ml = <input type="text" name="units14"> l</li>
-				<li> 1575 ml = <input type="text" name="units15"> l</li>
-				<li> 3300 ml = <input type="text" name="units16"> l</li>
+				<li> 70 ml = <input type="text" name="units13" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
+				<li> 725 ml = <input type="text" name="units14" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
+				<li> 1575 ml = <input type="text" name="units15" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
+				<li> 3300 ml = <input type="text" name="units16" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
 			</ol>
 			<br>
 			Change to micrometer<br>
 			<ol>
-				<li> 128 mm = <input type="text" name="units17"> micrometers</li>
-				<li> 32 mm = <input type="text" name="units18"> micrometers</li>
-				<li> 3.55 mm = <input type="text" name="units19"> micrometers</li>
-				<li> 22.45 mm = <input type="text" name="units20"> micrometers</li>
+				<li> 128 mm = <input type="text" name="units17" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
+				<li> 32 mm = <input type="text" name="units18" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
+				<li> 3.55 mm = <input type="text" name="units19" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
+				<li> 22.45 mm = <input type="text" name="units20" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
 			</ol>
 			<br><br>
-			
+						<!-- Kirjoitettu valmiiksi, mutta kommentoitu vielä ulos.
 			<h2> Percentage 10 Points</h2><br>
 			What is
 			<ol>
@@ -218,7 +218,7 @@ if($remainingSeconds < 1){
 				<li> 45 = <input type="text" name="roman10"></li> 
 			</ol>
 			-->   
-			<input type="submit" value="Finish exam!" name="submit" onclick="checkResults()">
+			<input type="submit" value="Finish exam!" name="submit">
 		</form>
 		</body>
 		

@@ -20,7 +20,26 @@ $id = $_SESSION['id'];
 	$BC9 = !empty($_POST['BC9']) ? $_POST['BC9'] : "NULL";
 	$BC10 = !empty($_POST['BC10']) ? $_POST['BC10'] : "NULL";
 
-
+    $units1 = !empty($_POST['units1']) ? $_POST['units1'] : "NULL";
+	$units2 = !empty($_POST['units2']) ? $_POST['units2'] : "NULL";
+	$units3 = !empty($_POST['units3']) ? $_POST['units3'] : "NULL";
+	$units4 = !empty($_POST['units4']) ? $_POST['units4'] : "NULL";
+	$units5 = !empty($_POST['units5']) ? $_POST['units5'] : "NULL";
+	$units6 = !empty($_POST['units6']) ? $_POST['units6'] : "NULL";
+	$units7 = !empty($_POST['units7']) ? $_POST['units7'] : "NULL";
+	$units8 = !empty($_POST['units8']) ? $_POST['units8'] : "NULL";
+	$units9 = !empty($_POST['units9']) ? $_POST['units9'] : "NULL";
+	$units10 = !empty($_POST['units10']) ? $_POST['units10'] : "NULL";
+	$units11 = !empty($_POST['units11']) ? $_POST['units11'] : "NULL";
+	$units12 = !empty($_POST['units12']) ? $_POST['units12'] : "NULL";
+	$units13 = !empty($_POST['units13']) ? $_POST['units13'] : "NULL";
+	$units14 = !empty($_POST['units14']) ? $_POST['units14'] : "NULL";
+	$units15 = !empty($_POST['units15']) ? $_POST['units15'] : "NULL";
+	$units16 = !empty($_POST['units16']) ? $_POST['units16'] : "NULL";
+	$units17 = !empty($_POST['units17']) ? $_POST['units17'] : "NULL";
+	$units18 = !empty($_POST['units18']) ? $_POST['units18'] : "NULL";
+	$units19 = !empty($_POST['units19']) ? $_POST['units19'] : "NULL";
+	$units20 = !empty($_POST['units20']) ? $_POST['units20'] : "NULL";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -43,7 +62,7 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 			while($row = mysqli_fetch_array($result)){
 					echo " " . $row['exam'] . "/100.";
         }
-        echo "</table>";
+
         // Free result set
         mysqli_free_result($result);
 		mysqli_close($conn);
@@ -56,11 +75,99 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 else
 	
 {
-	$sql = "INSERT INTO basiccalc (ID,BC1,BC2,BC3,BC4,BC5,BC6,BC7,BC8,BC9,BC10)
-	VALUES ($id, $BC1,$BC2,$BC3,$BC4,$BC5,$BC6,$BC7,$BC8,$BC9,$BC10)";
+	$totalPoints = 0;
+	$bcPoints = 0;
+	$unitsPoints = 0;
+	$i=1;
 	
+	// basiccalc
+	while ($i<=10){
+		
+		//create some variables that we are able to loop
+		$value = '$BC' . $i . 'res';
+		$column = '$BC' . $i;
+		$presult = 'BC' . $i . 'res';
+		$query = "SELECT * FROM results";
+		
+		$result = mysqli_query ($conn, $query);
+		
+		if ( mysqli_num_rows ($result) > 0){
+			while($data = mysqli_fetch_array($result)){
+				echo "Correct answer: ";
+				echo $data["$presult"];
+				
+				if (intval($data["$presult"]) == ${'BC'. $i}) {
+					$totalPoints++;
+					$bcPoints++;
+					echo " Your answer: ";
+					echo ${'BC'. $i};
+					echo " true";
+				}	else {
+					echo "Your answer: ";
+					echo ${'BC'. $i};
+					echo " false";
+				}
+				echo "<br>";
+			}
+		}else{
+			echo "No Records Found!";
+		}
+	$i+=1;	
+	}
+	echo "Basic Calculations points: ".$bcPoints."/10 <br>";
 
-   
+
+	// units
+	while ($i<=20){
+		
+		//create some variables that we are able to loop
+		$value = '$units' . $i . 'res';
+		$column = '$units' . $i;
+		$presult = 'units' . $i . 'res';
+		$query = "SELECT * FROM results";
+		
+		$result = mysqli_query ($conn, $query);
+		
+		if ( mysqli_num_rows ($result) > 0){
+			while($data = mysqli_fetch_array($result)){
+				echo "Correct answer: ";
+				echo $data["$presult"];
+				if ($i > 8 && $i < 13 || $i > 16 && $i < 21) {
+					if (intval($data["$presult"]) == ${'units'. $i}) {
+						$totalPoints++;
+						$unitsPoints++;
+						echo " Your answer: ";
+						echo ${'units'. $i};
+						echo " true";
+					} else {
+						echo "Your answer: ";
+						echo ${'units'. $i};
+						echo " false";
+					}
+				} else {
+					if (floatval($data["$presult"]) == ${'units'. $i}) {
+						$totalPoints++;
+						$bcPoints++;
+						echo " Your answer: ";
+						echo ${'units'. $i};
+						echo " true";
+					}	else {
+						echo " Your answer: ";
+						echo ${'units'. $i};
+						echo " false";
+					}
+				}
+				echo "<br>";
+			}
+		} else {
+			echo "No Records Found!";
+		}
+	$i += 1;	
+	}
+	echo "Your Units points: ".$unitsPoints."/20 <br>";
+	$sql = "INSERT INTO grades (ID,exam)
+	VALUES ($id, $totalPoints)";
+   echo "Your total points: " .$totalPoints. "<br>";
 
 	if (mysqli_query($conn, $sql)) {
 		echo "New record created successfully";
