@@ -104,20 +104,20 @@ if($remainingSeconds < 1){
 		
 			<h2>Basic Calculations 10 Points</h2>
 			<ol>
-				<li> 98 - 56 + 45 = <input type="text" name="BC1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
-				<li> 376 - 678 + 236 = <input type="text" name="BC2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
-				<li> 6 x 7 - 9 x 5 = <input type="text" name="BC3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
-				<li> 56 x 5 + 23 x 9 - 567 = <input type="text" name="BC4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
-				<li> 5.6 x 34 + 21 / 7 = <input type="text" name="BC5" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
-				<li> 123.45 x 5.5 = <input type="text" name="BC6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
-				<li> 3276.45 / 8 = <input type="text" name="BC7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
-				<li> 748.5 / 1.5 = <input type="text" name="BC8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
-				<li> 45600 / 100 = <input type="text" name="BC9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
-				<li> 8763 x 100 = <input type="text" name="BC10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 98 - 56 + 45 = <input type="number" name="BC1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 376 - 678 + 236 = <input type="number" name="BC2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 6 x 7 - 9 x 5 = <input type="number" name="BC3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 56 x 5 + 23 x 9 - 567 = <input type="number" name="BC4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 5.6 x 34 + 21 / 7 = <input type="number" name="BC5" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 123.45 x 5.5 = <input type="number" name="BC6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 3276.45 / 8 = <input type="number" name="BC7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 748.5 / 1.5 = <input type="number" name="BC8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 45600 / 100 = <input type="number" name="BC9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
+				<li> 8763 x 100 = <input type="number" name="BC10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
 			</ol>
 			
-					
-			<!-- Kirjoitettu valmiiksi, mutta kommentoitu vielä ulos.
+			<!-- Kirjoitettu valmiiksi, mutta kommentoitu vielä ulos.				
+
 			<br><br>
    			<h2>Units 20 Points</h2><br>
 			Change to milligrams<br>
@@ -217,7 +217,7 @@ if($remainingSeconds < 1){
 				<li> 14 = <input type="text" name="roman9"></li> 
 				<li> 45 = <input type="text" name="roman10"></li> 
 			</ol>
-			-->    
+			-->   
 			<input type="submit" value="Finish exam!" name="submit" onclick="checkResults()">
 		</form>
 		</body>
@@ -228,8 +228,11 @@ if($remainingSeconds < 1){
 		function hasText(value) {
 			if (value === "" ) {
 				hasValue = false;
-			} else if (value !== "") {
+			} else if (value !== "" && isNaN(value)) {
 				hasValue = true;
+			} else {
+				alarm("This is not a number, please correct");
+				hasValue = false;
 			}
 		}
 
