@@ -33,17 +33,15 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 	header("Location: https://2001277.azurewebsites.net/mathtest/result.php"); 
 	exit();
 } else {
-    if (mysqli_query($conn,$sql)) {
-        echo "New record created.<br/>";
-    } else {
-        echo "Error adding user in database<br/>";
-    }
+	if (!mysqli_query($conn, $sql)) {
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+	}
 
 echo "<br><br>";
 
 mysqli_close($conn);
 }
-/*
+
 if(!isset($_SESSION['active_count'])){
     $_SESSION['active_count'] = 3600;
     $_SESSION['time_started'] = time();
@@ -52,20 +50,14 @@ if(!isset($_SESSION['active_count'])){
 $now = time();
 
 $final_remain_time = $now - $_SESSION['time_started'];
-
 $remainingSeconds = abs($_SESSION['active_count'] - $final_remain_time);
 $remainingMinutes = round($remainingSeconds/60);
-if($remainingMinutes > 1) {
-echo "There are $remainingMinutes minutes remaining.";
-} else {
-	echo "There are $remainingSeconds seconds remaining.";
-}
 
 if($remainingSeconds < 1){
-   //Finished! Do something.
    echo "Your time is up!";
+
 }
-*/
+
 
 ?>
 		
@@ -77,8 +69,10 @@ if($remainingSeconds < 1){
 		<form id="form2" action="result.php" method="post">
 		
 			<h4> Welcome <?php echo $_POST["name"]; ?>, <?php echo $_POST["id"]; ?>! Your exam has started.</h4>
-					
+			
+			
 			<?php
+			// show starting and finishing time
 			$endTime = time() + (60 * 60);
 			echo 'Starting time:  '.date('H:i:s', time());
 			echo "<br>";
@@ -108,26 +102,23 @@ if($remainingSeconds < 1){
 				<li> 8763 x 100 = <input type="number" name="BC10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
 			</ol>
 			
-				
-
-			<br><br>
    			<h2>Units 20 Points</h2>
-			Change to milligrams<br>
+			Change to milligrams<br>                                        
 			<ol>
   		 		<li>  925 micrograms = <input type=number step=any name="units1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
 				<li> 200 micrograms = <input type=number step=any name="units2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
 				<li> 1386 micrograms = <input type=number step=any name="units3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
 				<li> 500 micrograms = <input type=number step=any name="units4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> mg</li>
 			</ol>
-			<br>
-			Change to grams<br>
+
+			Change to grams<br> 
 			<ol>
 				<li> 7260 mg = <input type=number step=any name="units5"  onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
 				<li> 80 mg = <input type=number step=any name="units6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
 				<li> 135 mg = <input type=number step=any name="units7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
 				<li> 1250 mg = <input type=number step=any name="units8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> g</li>
 			</ol>
-			<br>
+		
 			Change to milliliters<br>
 			<ol>
 				<li> 4.5 l = <input type=number step=any name="units9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
@@ -135,7 +126,7 @@ if($remainingSeconds < 1){
 				<li> 8.5 l = <input type=number step=anyname="units11" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
 				<li> 2.2 l = <input type=number step=anyname="units12" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> ml</li>
 			</ol>
-			<br>
+		
 			Change to liters<br>
 			<ol>
 				<li> 70 ml = <input type=number step=any name="units13" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
@@ -143,7 +134,7 @@ if($remainingSeconds < 1){
 				<li> 1575 ml = <input type=number step=any name="units15" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
 				<li> 3300 ml = <input type=number step=any name="units16" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> l</li>
 			</ol>
-			<br>
+
 			Change to micrometer<br>
 			<ol>
 				<li> 128 mm = <input type=number step=any name="units17" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
@@ -151,9 +142,8 @@ if($remainingSeconds < 1){
 				<li> 3.55 mm = <input type=number step=any name="units19" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
 				<li> 22.45 mm = <input type=number step=any name="units20" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> micrometers</li>
 			</ol>
-			<br><br>
 						
-			<h2> Percentage 10 Points</h2><br>
+			<h2> Percentage 10 Points</h2>
 			What is
 			<ol>
 				<li> 10 % of 2500 = <input type="number" name="per1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
@@ -164,29 +154,28 @@ if($remainingSeconds < 1){
 				<li> 35 % of 2200 = <input type="number" name="per6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
 				<li> 42 % of 4800 = <input type="number" name="per7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
 			</ol>
-			<br>
+		
 			Find the percentage<br>
 			<ol>
 				<li> 1500 ml out of 2500 ml = <input type="number" name="per8" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> %</li> 
 				<li> 1200 ml out of 4000 ml = <input type="number" name="per9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> %</li> 
 				<li> 650 ml out of 1000 ml = <input type="number" name="per10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"> %</li> 
 			</ol>
-			<br><br>
 
-			<h2>Expressions / Simplify / Division & Multiplication (by 10, 100, 1000) 10 Points</h2><br>
+			<h2>Expressions / Simplify / Division & Multiplication (by 10, 100, 1000) 10 Points</h2>
 			<ol>
 				<li> x + 45 = 35 What is x? x = <input type=number step=any name="esdn1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 				<li> x - 526 = 445 What is x? x = <input type=number step=any name="esdn2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 				<li> If x = 5 then 2x + 3 - x = <input type=number step=any name="esdn3" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 			</ol>
-			<br>
+
 			Simplify<br>
 			<ol>
 				<li> 275/400 = <input type="text" name="esdn4" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 				<li> 60/375 = <input type="text" name="esdn5" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 				<li> 125/300 = <input type="text" name="esdn6" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 			</ol>
-			<br>
+	
 			Division & Multiplication<br>
 			<ol>
 				<li> 8.25 / 1000 = <input type=number step=any name="esdn7" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
@@ -194,9 +183,8 @@ if($remainingSeconds < 1){
 				<li> 3.87 x 10 = <input type=number step=any name="esdn9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 				<li> 2.29 / 100 = <input type=number step=any name="esdn10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 			</ol>
-			<br><br>
 
-			<h2>Roman Numbers 10 Points</h2><br>
+			<h2>Roman Numbers 10 Points</h2>
 			<ol>
 				<li> IX = <input type="number" name="roman1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 				<li> XXXIX = <input type="number" name="roman2" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
@@ -225,9 +213,7 @@ if($remainingSeconds < 1){
 				hasValue = true;
 			} else if (value !== "" && eType===text) {
 				hasValue = true;
-			}  else {
-				hasValue = false;
-			}
+			} 
 		}
 
 		// function to change progress in progress bar
