@@ -30,7 +30,7 @@ $rs = mysqli_query($conn,$idCheck);
 if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
     echo "You have already done this exam!";
 	mysqli_close($conn);
-	header("Location: https://2001367PJ.azurewebsites.net/mathtest/result.php"); 
+	header("Location: https://2001367PJ.azurewebsites.net/phpProject/result.php/"); 
 	exit();
 } else {
 	if (!mysqli_query($conn, $sql)) {
@@ -68,7 +68,7 @@ mysqli_close($conn);
 			
 			<br><br>
 			Notice that you need to use point(.) as decimal separator.
-			<div id='timediv'>Exam ends in <span id='time'>60:00</span> minutes!</div>
+			<div id='timediv'>Exam ends in <span id='time'>60:00</span>!</div>
 			
 			<form id="form" action="result.php" method="post">
 			
@@ -228,7 +228,7 @@ mysqli_close($conn);
 				minutes = minutes < 10 ? "0" + minutes : minutes;
 				seconds = seconds < 10 ? "0" + seconds : seconds;
 
-				display.textContent = minutes + ":" + seconds;
+				display.textContent = minutes + " minutes " + seconds + " seconds";
 		
 				if( timer <= warning && !ok ){
 					alert('Time is running out.... less than 1 minute to go!');
@@ -243,16 +243,16 @@ mysqli_close($conn);
 					form.submit();	
 				}
 			}, 1000);
-		}
+		};
 
 		
 
-window.onload = function() {
-	var examTime = 60 * 60;
-	// kun tässä on form, submittaus toimii, mutta pitäisi olla time, jolloin ei toimi
-	var display = document.querySelector('#time');
-	startTimer(examTime, display);
-};
+		window.onload = function() {
+			var examTime = 60 * 60;
+			// kun tässä on form, submittaus toimii, mutta pitäisi olla time, jolloin ei toimi
+			var display = document.querySelector('#time');
+			startTimer(examTime, display);
+			};
 		</script>
 	</html>
 		

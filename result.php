@@ -90,13 +90,13 @@ $rs = mysqli_query($conn,$idCheck);
 
 // if person's student id is already in database, the exam has been done and can't be done another time
 if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
-    echo "You have already done this exam!";
+    echo '<span style="color:#000080;font-weight:bold;font-size:18";>You have already done this exam!</span><br>';
 	$sql = "SELECT * FROM grades WHERE ID = $id";
 	 if($result = mysqli_query($conn, $sql)){
 		if(mysqli_num_rows($result) > 0){
-			echo " Your result was:";
+			echo '<span style="color:#000080;font-weight:bold;font-size:18";>  Your result was:</span>';
 			while($row = mysqli_fetch_array($result)){
-					echo " " . $row['exam'] . "/100.";
+					echo '<span style="color:#000080;font-weight:bold;font-size:18";> ' . $row['exam'] . '/100.</span>';
         }
 
         // Free result set
