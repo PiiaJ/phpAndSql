@@ -361,8 +361,7 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 	
 			if ( mysqli_num_rows ($result) > 0){
 				while($data = mysqli_fetch_array($result)){
-					echo '<span style="font-weight:bold";>'.$data["$presult"].'  /  </span>';			
-					if ($i > 0 && $i < 6) {
+					echo '<span style="font-weight:bold";>'.$data["$presult"].'  /  </span>';			if ($i > 0 && $i < 6) {
 						if (intval($data["$presult"]) == ${'roman'.$i}) {
 							$totalPoints++;
 							$romanPoints++;
@@ -387,11 +386,11 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 			}
 			$i += 1;	
 		} 
-		echo '<br><span style="color:#000080";> Expressions, Simplify etc. points: '.$romanPoints.'/10 </span><br><br>';
+		echo '<br><span style="color:#000080";> Roman Numbers points: '.$romanPoints.'/10 </span><br>';
 
 
  		$sql = "INSERT INTO grades (ID,exam) VALUES ($id, $totalPoints)";
-			echo '<br><span style="color:#000080;font-weight:bold;font-size:25";> Your total points: ' . $totalPoints . ' </span><br><br>';
+			echo '<br><span style="color:#000080;font-weight:bold;font-size:20";> Your total points: ' . $totalPoints . ' </span><br><br>';
 
 		if (!mysqli_query($conn, $sql)) {
 			echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
