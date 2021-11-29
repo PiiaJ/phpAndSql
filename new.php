@@ -47,6 +47,7 @@ mysqli_close($conn);
 	<html>	
 		<head>
 		        <link rel="stylesheet" href="./styles.css">
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 				<h4> Welcome <?php echo $_POST["name"]; ?>, <?php echo $_POST["id"]; ?>! Your exam has started.</h4>
 		</head>
 		<body>
@@ -190,7 +191,7 @@ mysqli_close($conn);
 	
 		<script>
 		// function to find out if input box has any data inside it 
-		let hasValue = false;
+		var hasValue = false;
 		var eType = document.querySelector('type');
 		function hasText(value) {
 			if (value === "" ) {
@@ -214,14 +215,14 @@ mysqli_close($conn);
 		}
 
 		// function for countdown
-		function startTimer(duration, display) {
+		function startTimer(duration) {
 			var timer = duration;
 			var minutes, seconds;
 			var warning = 60;
 			var ok=false;
-			var form = document.getElementsByClassName('form');
-	
-	
+			var form = document.getElementById('form');
+			var display = document.getElementById('time');
+
 			var t=setInterval(function() {
 				minutes = parseInt(timer / 60, 10);
 				seconds = parseInt(timer % 60, 10);
@@ -238,20 +239,14 @@ mysqli_close($conn);
 				if (--timer <= 0) {
 					timer = duration;
 					if( !isNaN( t ) )clearInterval( t );
-			
-					// submit the form...
-					form.submit();	
+					form.requestSubmit();
 				}
 			}, 1000);
 		};
 
-		
-
 		window.onload = function() {
-			var examTime = 60 * 60;
-			// kun tässä on form, submittaus toimii, mutta pitäisi olla time, jolloin ei toimi
-			var display = document.querySelector('#time');
-			startTimer(examTime, display);
+			var examTime = 60 * 0.1;
+			startTimer(examTime);
 			};
 		</script>
 	</html>
