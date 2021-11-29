@@ -30,7 +30,7 @@ $rs = mysqli_query($conn,$idCheck);
 if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
     echo "You have already done this exam!";
 	mysqli_close($conn);
-	header("Location: https://2001277.azurewebsites.net/mathtest/result.php"); 
+	header("Location: https://2001367PJ.azurewebsites.net/mathtest/result.php"); 
 	exit();
 } else {
 	if (!mysqli_query($conn, $sql)) {
@@ -42,39 +42,20 @@ echo "<br><br>";
 mysqli_close($conn);
 }
 
-if(!isset($_SESSION['active_count'])){
-    $_SESSION['active_count'] = 3600;
-    $_SESSION['time_started'] = time();
-}
-
-$now = time();
-
-$final_remain_time = $now - $_SESSION['time_started'];
-$remainingSeconds = abs($_SESSION['active_count'] - $final_remain_time);
-$remainingMinutes = round($remainingSeconds/60);
-
-if($remainingSeconds < 1){
-   echo "Your time is up!";
-
-}
-
-
 ?>
-		
+	
 	<html>	
 		<head>
 		        <link rel="stylesheet" href="./styles.css">
+				<h4> Welcome <?php echo $_POST["name"]; ?>, <?php echo $_POST["id"]; ?>! Your exam has started.</h4>
 		</head>
 		<body>
-		<form id="form2" action="result.php" method="post">
-		
-			<h4> Welcome <?php echo $_POST["name"]; ?>, <?php echo $_POST["id"]; ?>! Your exam has started.</h4>
-			
-			
+
 			<?php
 			// show starting and finishing time
+			date_default_timezone_set("Europe/Helsinki");
 			$endTime = time() + (60 * 60);
-			echo 'Starting time:  '.date('H:i:s', time());
+			echo 'Starting time:  '.date('H:i:s');
 			echo "<br>";
 			echo 'Your time will finish:  '.date('H:i:s', $endTime);
 			?>
@@ -87,7 +68,10 @@ if($remainingSeconds < 1){
 			
 			<br><br>
 			Notice that you need to use point(.) as decimal separator.
-		
+			<div id='timediv'>Exam ends in <span id='time'>60:00</span> minutes!</div>
+			
+			<form id="form" action="result.php" method="post">
+			
 			<h2>Basic Calculations 10 Points</h2>
 			<ol>
 				<li> 98 - 56 + 45 = <input type="number" name="BC1" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li>
@@ -197,21 +181,21 @@ if($remainingSeconds < 1){
 				<li> 14 = <input type="text" name="roman9" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 				<li> 45 = <input type="text" name="roman10" onclick="hasText(this.value)" onchange="makeProgress(this.value)"></li> 
 			</ol>
-			
-			<input type="submit" value="Finish exam!" name="submit">
+				
+			<input type="submit" id="submit" value="Finish exam!" name="submit">
 		</form>
+
 		</body>
-		
+ 
+	
 		<script>
 		// function to find out if input box has any data inside it 
 		let hasValue = false;
-		var eType = element.getAttribute('type');
+		var eType = document.querySelector('type');
 		function hasText(value) {
 			if (value === "" ) {
 				hasValue = false;
-			} else if (value !== "" && !isNaN(value) && eType===number) {
-				hasValue = true;
-			} else if (value !== "" && eType===text) {
+			} else if (value !== "" ) {
 				hasValue = true;
 			} 
 		}
@@ -228,8 +212,47 @@ if($remainingSeconds < 1){
 				}
 			} 
 		}
+
+		// function for countdown
+		function startTimer(duration, display) {
+			var timer = duration;
+			var minutes, seconds;
+			var warning = 60;
+			var ok=false;
+			var form = document.getElementsByClassName('form');
+	
+	
+			var t=setInterval(function() {
+				minutes = parseInt(timer / 60, 10);
+				seconds = parseInt(timer % 60, 10);
+				minutes = minutes < 10 ? "0" + minutes : minutes;
+				seconds = seconds < 10 ? "0" + seconds : seconds;
+
+				display.textContent = minutes + ":" + seconds;
+		
+				if( timer <= warning && !ok ){
+					alert('Time is running out.... less than 1 minute to go!');
+					ok=true;
+				}
+
+				if (--timer <= 0) {
+					timer = duration;
+					if( !isNaN( t ) )clearInterval( t );
+			
+					// submit the form...
+					form.submit();	
+				}
+			}, 1000);
+		}
+
 		
 
+window.onload = function() {
+	var examTime = 60 * 0.5;
+	// kun tässä on form, submittaus toimii, mutta pitäisi olla time, jolloin ei toimi
+	var display = document.querySelector('#time');
+	startTimer(examTime, display);
+};
 		</script>
-		</html>
+	</html>
 		
