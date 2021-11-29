@@ -245,7 +245,7 @@ mysqli_close($conn);
 		};
 
 		window.onload = function() {
-			var examTime = 60 * 0.1;
+			var examTime = 60 * 60;
 			startTimer(examTime);
 			};
 		</script>
