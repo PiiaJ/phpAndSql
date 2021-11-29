@@ -248,7 +248,7 @@ mysqli_close($conn);
 		
 
 window.onload = function() {
-	var examTime = 60 * 0.5;
+	var examTime = 60 * 60;
 	// kun tässä on form, submittaus toimii, mutta pitäisi olla time, jolloin ei toimi
 	var display = document.querySelector('#time');
 	startTimer(examTime, display);
