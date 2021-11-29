@@ -1,4 +1,5 @@
 <?php
+// connection data
 
 session_start();
 
@@ -8,7 +9,7 @@ $password = "6#vWHD_$";
 $dbname = "localdb";
 $id = $_SESSION['id'];
 
-
+	// variables to send in database, if input is empty, send null
     $BC1 = !empty($_POST['BC1']) ? $_POST['BC1'] : "NULL";
 	$BC2 = !empty($_POST['BC2']) ? $_POST['BC2'] : "NULL";
 	$BC3 = !empty($_POST['BC3']) ? $_POST['BC3'] : "NULL";
@@ -82,10 +83,12 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+// variables for checking if person is allowed to do the exam
 $idCheck = "SELECT * FROM basiccalc WHERE ID = $id"; 
 
 $rs = mysqli_query($conn,$idCheck);
 
+// if person's student id is already in database, the exam has been done and can't be done another time
 if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
     echo "You have already done this exam!";
 	$sql = "SELECT * FROM grades WHERE ID = $id";
@@ -115,18 +118,17 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 	$romanPoints = 0;
 	$i=1;
 
-	echo "Correct answer / ";
-	echo " Your answer /";
-	echo " True/false <br>";
 
-	$sql = "INSERT INTO basiccalc (ID)
-	VALUES ($id)";
+	echo '<br><span style="color:#000080;font-weight:bold;font-size:25px";>Exam results</span><br>';
+	echo '<br><span style="color:#000080;font-weight:bold";>Correct answer /  Your answer </span><br>';
 
-	if (mysqli_query($conn, $sql)) {
-		echo "";
-			} else {
+	// sends student id into database table
+	$sql = "INSERT INTO basiccalc (ID) VALUES ($id)";
+
+	if (!mysqli_query($conn, $sql)) {
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
 	}
+	echo '<br><span style="color:#000080;font-weight:bold";> Basic Calculations:  </span><br><br>';
 
 	// basiccalc
 	while ($i<=10){
@@ -134,53 +136,47 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 		//create some variables that we are able to loop
 		$presult = 'BC' . $i . 'res';
 		$query = "SELECT * FROM results";
-
-	
 		$result = mysqli_query ($conn, $query);
 		
 		if ( mysqli_num_rows ($result) > 0){
 			while($data = mysqli_fetch_array($result)){
-				//echo "Correct answer: ";
-				echo $data["$presult"]."  /  ";
-				
+				// this is the correct answer
+				echo '<span style="font-weight:bold";>'.$data["$presult"].'  /  </span>';
+				// result given is printed on screen and if answer is correct, points are added
 				if (intval($data["$presult"]) == ${'BC'. $i}) {
 					$totalPoints++;
 					$bcPoints++;
-					//echo " Your answer: ";
-					echo ${'BC'. $i}." ";
-					echo "/ true";
+					echo '<span style="color:#0f0;">'.${'BC'. $i}.'</span>';
 				}	else {
-					//echo "Your answer: ";
-					echo ${'BC'. $i}." ";
-					echo "/ false";
+					echo '<span style="color:#f00;">'.${'BC'. $i}.'</span>';
 				}
 				echo "<br>";
+
+				// add data to database
 				$sql = "UPDATE basiccalc  SET BC$i = ${'BC'.$i} WHERE ID = $id";
-				if (mysqli_query($conn, $sql)) {
-					echo "";
-						} else {
+				if (!mysqli_query($conn, $sql)) {
 					echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
 				}
 			}
 		}else{
 			echo "No Records Found!";
 		}
-	$i+=1;	
+		// add +1 to index
+		$i+=1;	
 	}
-	echo "<br>Basic Calculations points: ".$bcPoints."/10 <br><br>";
+	// print how many points did user get from this part
+	echo '<br><span style="color:#000080";> Basic Calculations points: '.$bcPoints.'/10 </span><br><br>';
 
-
-	// reset i
+	// reset index to 1
 	$i=1;
 
-	$sql = "INSERT INTO units (ID)
-	VALUES ($id)";
+	$sql = "INSERT INTO units (ID) VALUES ($id)";
 
-	if (mysqli_query($conn, $sql)) {
-		echo "";
-	} else {
+	if (!mysqli_query($conn, $sql)) {
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
 	}
+
+	echo '<br><span style="color:#000080;font-weight:bold";> Units:  </span><br><br>';
 
 	// units
 	while ($i<=20){
@@ -189,38 +185,33 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 
 		$presult = 'units' . $i . 'res';
 		$query = "SELECT * FROM results";
-		
 		$result = mysqli_query ($conn, $query);
 		
 		if ( mysqli_num_rows ($result) > 0){
 			while($data = mysqli_fetch_array($result)){
-				echo $data["$presult"]."  /  ";
+				echo '<span style="font-weight:bold";>'.$data["$presult"].'  /  </span>';
+				// if answers are integer type
 				if ($i > 8 && $i < 13 || $i > 16 && $i < 21) {
 					if (intval($data["$presult"]) == ${'units'. $i}) {
 						$totalPoints++;
 						$unitsPoints++;
-						echo ${'units'. $i}." ";
-						echo "/ true";
+						echo '<span style="color:#0f0;">'.${'units'. $i}.'</span>';
 					} else {
-						echo ${'units'. $i}." ";
-						echo "/ false";
+						echo '<span style="color:#f00;">'.${'units'. $i}.'</span>';
 					}
 				} else {
+					// if answers are float type
 					if (floatval($data["$presult"]) == ${'units'. $i}) {
 						$totalPoints++;
 						$unitsPoints++;
-						echo ${'units'. $i}." ";
-						echo "/ true";
+						echo '<span style="color:#0f0;">'.${'units'. $i}.'</span>';
 					}	else {
-						echo ${'units'. $i}." ";
-						echo "/ false";
+						echo '<span style="color:#f00;">'.${'units'. $i}.'</span>';
 					}
 				}
 				echo "<br>";
 				$sql = "UPDATE units  SET unit$i = ${'units'.$i} WHERE ID = $id";
-				if (mysqli_query($conn, $sql)) {
-					echo "";
-				} else {
+				if (!mysqli_query($conn, $sql)) {
 					echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
 				}
 			}
@@ -229,231 +220,183 @@ if ($data = mysqli_fetch_array($rs, MYSQLI_NUM)) {
 		}
 	$i += 1;	
 	}
-	echo "<br>Your Units points: ".$unitsPoints."/20 <br><br>";
 
-// reset i
-$i = 1;
+	echo '<br><span style="color:#000080";> Units points: '.$unitsPoints.'/20  </span><br><br>';
 
-$sql = "INSERT INTO percentage (ID)
-VALUES ($id)";
+	// reset i
+	$i = 1;
 
-if (mysqli_query($conn, $sql)) {
-	echo "";
-} else {
-	echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
-}
+	$sql = "INSERT INTO percentage (ID) VALUES ($id)";
 
-// percentages
+	if (!mysqli_query($conn, $sql)) {
+		echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+	}
 
-while ($i<=10){
-$presult = 'per' . $i . 'res';
-$query = "SELECT * FROM results";
+	echo '<br><span style="color:#000080;font-weight:bold";> Percentages:  </span><br><br>';
 
-$result = mysqli_query ($conn, $query);
+	// percentages
 
-if ( mysqli_num_rows ($result) > 0){
-	while($data = mysqli_fetch_array($result)){
-		echo $data["$presult"]."  /  ";
+	while ($i<=10){
+		$presult = 'per' . $i . 'res';
+		$query = "SELECT * FROM results";
+		$result = mysqli_query ($conn, $query);
+
+		if ( mysqli_num_rows ($result) > 0){
+			while($data = mysqli_fetch_array($result)){
+				echo '<span style="font-weight:bold";>'.$data["$presult"].'  /  </span>';
 		
-		if (intval($data["$presult"]) == ${'per'. $i}) {
-			$totalPoints++;
-			$perPoints++;
-			echo ${'per'. $i}." ";
-			echo "/ true";
-		}	else {
-			echo ${'per'. $i}." ";
-			echo "/ false";
+				if (intval($data["$presult"]) == ${'per'. $i}) {
+					$totalPoints++;
+					$perPoints++;
+					echo '<span style="color:#0f0;">'.${'per'. $i}.'</span>';
+				}	else {
+					echo '<span style="color:#f00;">'.${'per'. $i}.'</span>';
+				}
+				echo "<br>";
+				$sql = "UPDATE percentage SET per$i = ${'per'.$i} WHERE ID = $id";
+				if (!mysqli_query($conn, $sql)) {
+					echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+				}
+			}
+		}else{
+			echo "No Records Found!";
 		}
-		echo "<br>";
-		$sql = "UPDATE percentage SET per$i = ${'per'.$i} WHERE ID = $id";
-		if (mysqli_query($conn, $sql)) {
-			echo "";
-		} else {
+		$i+=1;	
+		}
+		echo '<br><span style="color:#000080";> Percentage points: '.$perPoints.'/10   </span><br><br>';
+
+ 		// reset i
+ 		$i=1;
+
+ 		$sql = "INSERT INTO expressions (ID) VALUES ($id)";
+
+		if (!mysqli_query($conn, $sql)) {
 			echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
 		}
-	}
-}else{
-	echo "No Records Found!";
-}
-$i+=1;	
-}
-echo "<br>Your Percentage points: ".$perPoints."/10 <br><br>";
 
- // reset i
- $i=1;
+		echo '<br><span style="color:#000080;font-weight:bold";> Expressions, Simplify, Division & Multiplication:  </span><br><br>';
 
- $sql = "INSERT INTO expressions (ID)
-VALUES ($id)";
-
-if (mysqli_query($conn, $sql)) {
-	echo "";
-} else {
-	echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
-}
-
-// expressions, simplify, division & multiplication
- while ($i<=10){
+	// expressions, simplify, division & multiplication
+ 	while ($i<=10){
 		
-	//create some variables that we are able to loop
-	$presult = 'esdm' . $i . 'res';
-	$query = "SELECT * FROM results";
-		
-	$result = mysqli_query ($conn, $query);
-	
-
-		
-	if ( mysqli_num_rows ($result) > 0){
-		while($data = mysqli_fetch_array($result)){
-			echo $data["$presult"]."  /  ";
-			if($i > 0 && $i < 4){	
-				if (intval($data["$presult"]) == ${'esdn'. $i}) {
-					$sql = "UPDATE expressions SET esdn$i = ${'esdn'.$i} WHERE ID = $id";
-					if (mysqli_query($conn, $sql)) {
-						echo "";
-					} else {
-						echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+		//create some variables that we are able to loop
+		$presult = 'esdm' . $i . 'res';
+		$query = "SELECT * FROM results";
+		$result = mysqli_query ($conn, $query);
+				
+		if ( mysqli_num_rows ($result) > 0){
+			while($data = mysqli_fetch_array($result)){
+				echo '<span style="font-weight:bold";>'.$data["$presult"].'  /  </span>';
+					// data is integer type
+					if($i > 0 && $i < 4){	
+						if (intval($data["$presult"]) == ${'esdn'. $i}) {
+							$sql = "UPDATE expressions SET esdn$i = ${'esdn'.$i} WHERE ID = $id";
+							if (!mysqli_query($conn, $sql)) {
+								echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+							}
+							$totalPoints++;
+							$esdnPoints++;
+							echo '<span style="color:#0f0;">'.${'esdn'. $i}.'</span>';
+						} else {
+							echo '<span style="color:#f00;">'.${'esdn'. $i}.'</span>';
+						}
 					}
-					$totalPoints++;
-					$esdnPoints++;
-					echo ${'esdn'. $i}." ";
-					echo "/ true";
-				} else {
-					echo ${'esdn'. $i}." ";
-					echo "/ false";
-				}
-			}
-			if($i > 3 && $i < 7){
-				$stringTrim	= trim(${'esdn'. $i});
-				if (strval($data["$presult"]) == $stringTrim) {
-					$sql = "UPDATE expressions SET esdn$i = '$stringTrim' WHERE ID = $id";
-					if (mysqli_query($conn, $sql)) {
-						echo "";
-					} else {
-						echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+					// data is string type
+					if($i > 3 && $i < 7){
+						// trim string
+						$stringTrim	= trim(${'esdn'. $i});
+						if (strval($data["$presult"]) == $stringTrim) {
+							$sql = "UPDATE expressions SET esdn$i = '$stringTrim' WHERE ID = $id";
+							if (!mysqli_query($conn, $sql)) {
+								echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+							}
+							$totalPoints++;
+							$esdnPoints++;
+							echo '<span style="color:#0f0;">'.${'esdn'. $i}.'</span>';
+						} else {
+							echo '<span style="color:#f00;">'.${'esdn'. $i}.'</span>';
+						}
 					}
-					$totalPoints++;
-					$esdnPoints++;
-					echo ${'esdn'. $i}." ";
-					echo "/ true";
-				} else {
-					echo ${'esdn'. $i}." ";
-					echo "/ false";
-				}
-			}
-			if($i > 6 && $i <= 10){	
-				if (floatval($data["$presult"]) == ${'esdn'. $i}) {
-					$sql = "UPDATE expressions SET esdn$i = ${'esdn'.$i} WHERE ID = $id";
-					if (mysqli_query($conn, $sql)) {
-						echo "";
-					} else {
-						echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+					// data is float type
+					if($i > 6 && $i <= 10){	
+						if (floatval($data["$presult"]) == ${'esdn'. $i}) {
+							$sql = "UPDATE expressions SET esdn$i = ${'esdn'.$i} WHERE ID = $id";
+							if (!mysqli_query($conn, $sql)) {
+								echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+							}
+							$totalPoints++;
+							$esdnPoints++;
+							echo '<span style="color:#0f0;">'.${'esdn'. $i}.'</span>';
+						} else {
+							echo '<span style="color:#f00;">'.${'esdn'. $i}.'</span>';
+						}
 					}
-					$totalPoints++;
-					$esdnPoints++;
-					echo ${'esdn'. $i}." ";
-					echo "/ true";
-				} else {
-					echo ${'esdn'. $i}." ";
-					echo "/ false";
+					echo "<br>";
 				}
+			}else {
+				echo "No Records Found!";
 			}
-				echo "<br>";
-
+			$i+=1;	
 		}
-	}else{
-		echo "No Records Found!";
-	}
-	$i+=1;	
-}
-echo "<br>Your Expressions, Simplify etc. points: ".$esdnPoints."/10 <br><br>";
+		echo '<br><span style="color:#000080";> Expressions, Simplify etc. points: ".$esdnPoints."/10 </span><br><br>';
 
-$i = 1;
+		$i = 1;
 
-$sql = "INSERT INTO roman (ID)
-VALUES ($id)";
+		$sql = "INSERT INTO roman (ID) VALUES ($id)";
 
-if (mysqli_query($conn, $sql)) {
-	echo "";
-} else {
-	echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
-}
+		if (!mysqli_query($conn, $sql)) {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
+		}
 
-// roman numbers
-while ($i<=10){
+		echo '<br><span style="color:#000080;font-weight:bold";> Roman Numbers:  </span><br><br>';
+
+	// roman numbers
+	while ($i<=10){
 		
-	//create some variables that we are able to use in loop
+		//create some variables that we are able to use in loop
 
-	$presult = 'rom' . $i . 'res';
-	$query = "SELECT * FROM results";
+			$presult = 'rom' . $i . 'res';
+			$query = "SELECT * FROM results";
+			$result = mysqli_query ($conn, $query);
 	
-	$result = mysqli_query ($conn, $query);
-	
-	if ( mysqli_num_rows ($result) > 0){
-		while($data = mysqli_fetch_array($result)){
-			echo $data["$presult"]."  /  ";
-			if ($i > 0 && $i < 6) {
-				if (intval($data["$presult"]) == ${'roman'.$i}) {
-					$totalPoints++;
-					$romanPoints++;
-					echo ${'roman'. $i}." ";
-					echo "/ true";
-				} else {
-					echo ${'roman'. $i}." ";
-					echo "/ false";
+			if ( mysqli_num_rows ($result) > 0){
+				while($data = mysqli_fetch_array($result)){
+					echo '<span style="font-weight:bold";>'.$data["$presult"].'  /  </span>';			if ($i > 0 && $i < 6) {
+						if (intval($data["$presult"]) == ${'roman'.$i}) {
+							$totalPoints++;
+							$romanPoints++;
+							echo '<span style="color:#0f0;">'.${'roman'. $i}.'</span>';
+						} else {
+							echo '<span style="color:#f00;">'.${'roman'. $i}.'</span>';
+						}
+					} else {
+						$stringTrim=trim(${'roman'.$i});
+						if (strval($data["$presult"]) == strtoupper($stringTrim)){
+							$totalPoints++;
+							$romanPoints++;
+							echo '<span style="color:#0f0;">'.${'roman'. $i}.'</span>';
+						}	else {
+							echo '<span style="color:#f00;">'.${'roman'. $i}.'</span>';
+						}
+					}
+					echo "<br>";
 				}
 			} else {
-				$stringTrim=trim(${'roman'.$i});
-				if (strval($data["$presult"]) == strtoupper($stringTrim)){
-					$totalPoints++;
-					$romanPoints++;
-					echo ${'roman'. $i}." ";
-					echo "/ true";
-				}	else {
-					echo ${'roman'. $i}." ";
-					echo "/ false";
-				}
+				echo "No Records Found!";
 			}
-			echo "<br>";
+			$i += 1;	
+		} 
+		echo '<br><span style="color:#000080";> Expressions, Simplify etc. points: '.$romanPoints.'/10 </span><br><br>';
+
+
+ 		$sql = "INSERT INTO grades (ID,exam) VALUES ($id, $totalPoints)";
+			echo '<br><span style="color:#000080";> Your total points: ' . $totalPoints . ' </span><br><br>';
+
+		if (!mysqli_query($conn, $sql)) {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn). "<br>" ;
 		}
-	} else {
-		echo "No Records Found!";
+		mysqli_close($conn);
+
 	}
-$i += 1;	
-}
-echo "<br>Your Roman Numbers points: ".$romanPoints."/100 <br><br>";
-
-
- $sql = "INSERT INTO grades (ID,exam)
-VALUES ($id, $totalPoints)";
-echo "<br>Your total points: " . $totalPoints . "<br>";
-
-if (mysqli_query($conn, $sql)) {
-	echo "New record created successfully";
-		} else {
-	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-mysqli_close($conn);
-
-}
 
 ?>
-
-<!--
-
-
-		
-
-
-
-  $sql = "INSERT INTO basiccalc (ID,BC1,BC2,BC3,BC4,BC15BC6,BC7,BC8,BC9,BC10)
-  VALUES ($id, $BC1,$BC2,$BC3,$BC4,$BC5,$BC6,$BC7,$BC8,$BC9,$BC10)";
-  $sql = "INSERT INTO units (ID,units1,units2,units3,units4,units5,units6,units7,units8,units9,units10,units11,units12,units13,units14,units15,units16,units17,units18,units19,units20)
-  VALUES ($id, $units1, $units2, $units3, $units4, $units5, $units6, $units7, $units8, $units9, $units10, $units11, $units12, $units13, $units14, $units15, $units16, $units17, $units18, $units19, $units20)";
-  
-  $sql = "INSERT INTO percentage (ID,per1,per2,per3,per4,per5,per6,per7,per8,per9,per10)
-  VALUES ($id, $per1,$per2,$per3,$per4,$per5,$per6,$per7,$per8,$per9,$per10)";
-$sql = "INSERT INTO expressions (ID,esdn1,esdn2,esdn3,esdn4,esdn5,esdn6,esdn7,esdn8,esdn9,esdn10)
-VALUES ($id, $esdn1, $esdn2, $esdn3, $esdn4, $esdn5, $esdn6, $esdn7, $esdn8, $esdn9, $esdn10)";
-$sql = "INSERT INTO roman (ID,roman1,roman2,roman3,roman4,roman5,roman6,roman7,roman8,roman9,roman10)
-VALUES ($id, $roman1, $roman2, $roman3, $roman4, $roman5, $roman6, $roman7, $roman8, $roman9, $roman10)";
--->
